@@ -1,0 +1,14 @@
+# Host rows this bundle contributes. The ledger is one plugin: a background
+# listener that owns the durable store and the delete path, plus the page that
+# reads it.
+- insert:
+    - id: usage-ledger
+      name: dsh-usage-ledger
+      config:
+        backfill: true
+        sweepMinutes: 10
+        includeSubagents: true
+        payloadDays: 120
+        # Days a deleted session stays recoverable in this plugin's trash.
+        # 0 deletes immediately with no recycle copy.
+        trashRetentionDays: 30

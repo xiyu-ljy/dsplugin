@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Usage ledger",
+    "description": "Keeps a durable per-session token ledger and a page that goes on counting sessions after they are deleted."
+  }
+}
