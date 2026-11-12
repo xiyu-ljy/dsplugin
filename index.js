@@ -672,11 +672,12 @@ async function backfill(state) {
   await flushWrite();
 }
 
-/** Copy `parentSession` / `origin` from the log header onto a record. */
+/** Copy `parentSession` / `origin` / `cwd` from the log header onto a record. */
 async function fillLineage(record, directories) {
   const header = await readSessionHeader(directories.get(normalizeId(record.id).toLowerCase()));
   record.parent = typeof header?.parentSession === "string" ? normalizeId(header.parentSession) : "";
   record.origin = typeof header?.origin === "string" ? header.origin : "";
+  if (typeof header?.cwd === "string" && header.cwd !== "" && record.cwd === "") record.cwd = header.cwd;
 }
 
 /**
@@ -828,9 +829,13 @@ function handleSessionEvent(session, event) {
 function rememberLineage(record, header) {
   if (header === undefined || header === null) return;
   const parent = typeof header.parentSession === "string" ? normalizeId(header.parentSession) : "";
-  if (record.parent === parent) return;
+  const cwd = typeof header.cwd === "string" ? header.cwd : "";
+  const lineageChanged = record.parent !== parent;
+  const cwdMissing = cwd !== "" && record.cwd !== cwd;
+  if (!lineageChanged && !cwdMissing) return;
   record.parent = parent;
   record.origin = typeof header.origin === "string" ? header.origin : "";
+  if (cwdMissing) record.cwd = cwd;
   scheduleWrite();
 }
 

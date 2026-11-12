@@ -18,6 +18,7 @@ window.__ModuleLoader__.load({
     var useState = React.useState;
     var useEffect = React.useEffect;
     var useMemo = React.useMemo;
+    var useRef = React.useRef;
 
     var NS = "dsh-usage-ledger";
     var BASE = "/api/usage-ledger";
@@ -195,6 +196,14 @@ window.__ModuleLoader__.load({
       ".dul_dense .dul_cards{grid-template-columns:repeat(auto-fill,minmax(215px,1fr))}",
       ".dul_dense .dul_scardBody{gap:10px}",
       ".dul_dense .dul_heatRow{grid-template-columns:18px repeat(8,18px);gap:3px}",
+      ".dul_page{padding:12px 16px 24px}.dul_inner{max-width:1440px;gap:8px}.dul_titles{min-width:130px}.dul_head{align-items:center}.dul_tools{gap:6px}.dul_btn,.dul_segBtn{min-height:28px}.dul_kpiHint{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px}",
+      ".dul_top{grid-template-columns:repeat(6,minmax(0,1fr));gap:0;border:1px solid var(--dsw-alias-border-l1);border-radius:9px;overflow:hidden;background:var(--dsw-alias-bg-layer-1)}.dul_kpi{border:0;border-radius:0;background:transparent;align-items:flex-start;text-align:left;border-right:1px solid var(--dsw-alias-border-l1);padding:8px 12px}.dul_kpi:last-child{border-right:0}.dul_dense .dul_kpi{padding:8px 11px}",
+      ".dul_analysis{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:8px;align-items:stretch}.dul_analysis .dul_card{padding:9px 11px;gap:6px}.dul_analysis .dul_chartCard{grid-column:auto;grid-row:auto}.dul_analysis .dul_plot,.dul_analysis .dul_yaxisCol{height:92px;font-size:11px;line-height:12px}.dul_analysis .dul_dayValue{display:none}.dul_analysis .dul_donutRow{gap:9px;flex-wrap:nowrap;flex:1}.dul_analysis .dul_clegend{grid-template-columns:minmax(0,1fr);gap:1px}.dul_analysis .dul_clegendItem{padding:0 3px;margin:0 -3px}.dul_analysis .dul_clegendName,.dul_analysis .dul_clegendPct{font-size:11px;line-height:17px}.dul_analysis .dul_clegendValue{display:none}.dul_analysis .dul_cardHint{font-size:11px}.dul_analysis .dul_chartLegend{gap:12px;flex-wrap:wrap}",
+      "button.dul_dayGroup{appearance:none;padding:0;border:0;background:transparent;color:inherit;cursor:pointer}button.dul_cell{appearance:none;padding:0;border:0;cursor:pointer}button.dul_skillRow{appearance:none;width:100%;border:0;background:transparent;color:inherit;text-align:left;font:inherit;padding:4px;border-radius:5px;cursor:pointer}button.dul_skillRow:hover{background:var(--dsw-alias-bg-layer-2)}button.dul_clegendItem{appearance:none;width:100%;border:0;background:transparent;text-align:left;color:inherit;font:inherit;cursor:pointer}button.dul_clegendItem:hover{background:var(--dsw-alias-bg-layer-2)}.dul_donut circle[data-selectable]{cursor:pointer}.dul_dayGroup:focus-visible{outline-offset:3px}",
+      ".dul_more{border:1px solid var(--dsw-alias-border-l1);border-radius:8px;background:var(--dsw-alias-bg-layer-1)}.dul_more>summary{padding:6px 10px;font-size:12px;cursor:pointer;color:var(--dsw-alias-label-secondary)}.dul_more[open]>summary{border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_moreBody{display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);gap:8px;padding:8px}.dul_moreBody>.dul_card{border:0;padding:4px 6px;background:transparent}.dul_moreBody .dul_heatRow{grid-template-columns:20px repeat(8,minmax(12px,22px))}.dul_moreBody .dul_skillList{gap:0}",
+      ".dul_sessions{padding:0;gap:0}.dul_sessionsHead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:9px 11px 0}.dul_sessionsTitle{margin:0;font-size:13px;line-height:20px;font-weight:600}.dul_sessionTools{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.dul_sessions .dul_filters{padding:8px 11px;gap:6px}.dul_search{height:28px;min-width:150px}.dul_select{max-width:100%;height:28px;border:1px solid var(--dsw-alias-border-l2);border-radius:6px;background:var(--dsw-alias-bg-layer-1);color:var(--dsw-alias-label-primary);font:inherit;font-size:11.5px;padding:0 6px}.dul_tableWrap{overflow-x:auto}.dul_table{table-layout:fixed;min-width:640px}.dul_table th{padding:6px 10px;background:var(--dsw-alias-bg-layer-1)}.dul_table td{padding:7px 10px}.dul_table th:first-child{width:38%}.dul_table th:last-child{width:68px}.dul_table .dul_num{text-align:right}.dul_table .dul_nameText,.dul_table .dul_path{max-width:none}.dul_sessionOpen{appearance:none;display:block;max-width:100%;padding:0;border:0;background:transparent;color:var(--dsw-alias-label-primary);font:inherit;font-weight:600;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}.dul_sessionOpen:hover{text-decoration:underline}.dul_sessionMeta{display:flex;gap:6px;align-items:center;min-width:0;font-size:11px;color:var(--dsw-alias-label-secondary)}.dul_sessionMeta>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dul_actionSelect{width:68px;padding:0 3px}.dul_sessions .dul_cards{padding:0 11px 10px}.dul_sessions .dul_forgotten{margin:0;padding:8px 11px}.dul_resultStatus{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:7px 11px;font-size:11px;color:var(--dsw-alias-label-secondary)}.dul_notice{margin:0;padding:6px 11px;font-size:12px}.dul_noticeError{color:var(--dsw-alias-state-error-primary)}.dul_noticeSuccess{color:var(--dsw-alias-state-success-primary)}.dul_pager{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.dul_refreshError{padding:8px 10px;border:1px solid var(--dsw-alias-state-error-primary);border-radius:7px}",
+      ".dul_overlayDrawer{justify-content:flex-end;align-items:stretch}.dul_drawer{box-sizing:border-box;display:flex;flex-direction:column;width:540px;max-width:100vw;height:100%;background:var(--dsw-alias-bg-overlay);border-left:1px solid var(--dsw-alias-border-l2);box-shadow:-12px 0 35px rgba(0,0,0,.2);color:var(--dsw-alias-label-primary);font-size:12px;line-height:18px}.dul_drawerHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_drawerHead h2{margin:0;font-size:14px;line-height:21px;font-weight:600;overflow-wrap:anywhere}.dul_drawerBody{padding:12px 16px;overflow:auto;flex:1}.dul_detailStats{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:8px}.dul_detailValue{font-size:24px;line-height:32px;font-weight:600;font-variant-numeric:tabular-nums}.dul_detailHint{color:var(--dsw-alias-label-secondary);font-size:11px;margin:0 0 12px}.dul_detailRow{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_detailRow:last-child{border-bottom:0}.dul_detailMetric{text-align:right;font-variant-numeric:tabular-nums}.dul_detailName{overflow-wrap:anywhere}.dul_detailName>.dul_badge{margin-top:4px}.dul_detailList{margin:0;padding:0;list-style:none}.dul_detailRow .dul_sessionMeta{margin-top:3px}.dul_dialog{color:var(--dsw-alias-label-primary)}.dul_dialog .dul_error{margin:3px 0}.dul_listHint{font-size:11px;color:var(--dsw-alias-label-secondary)}",
+      "@container (max-width:820px){.dul_top{grid-template-columns:repeat(3,minmax(0,1fr))}.dul_kpi:nth-child(3){border-right:0}.dul_kpi:nth-child(-n+3){border-bottom:1px solid var(--dsw-alias-border-l1)}}@container (max-width:820px){.dul_analysis{grid-template-columns:repeat(2,minmax(0,1fr))}.dul_analysis>.dul_chartCard{grid-column:1/-1}.dul_analysis .dul_plot,.dul_analysis .dul_yaxisCol{height:72px}.dul_top{grid-template-columns:repeat(3,minmax(0,1fr))}.dul_table th:first-child{width:32%}}@container (max-width:540px){.dul_analysis,.dul_moreBody{grid-template-columns:minmax(0,1fr)}.dul_analysis>.dul_chartCard{grid-column:auto}.dul_top{grid-template-columns:repeat(2,minmax(0,1fr))}.dul_kpi:nth-child(3){border-right:1px solid var(--dsw-alias-border-l1)}.dul_kpi:nth-child(even){border-right:0}.dul_kpi:nth-child(-n+4){border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_head{align-items:flex-start}.dul_tools{width:100%}.dul_search{flex-basis:100%}.dul_sessionTools{width:100%;justify-content:space-between}}@media(pointer:coarse){.dul_btn,.dul_segBtn,.dul_select{min-height:36px}.dul_search{height:36px;font-size:16px}.dul_heatRow{gap:7px}.dul_skillRow{min-height:36px}}@media(prefers-reduced-motion:reduce){.dul_bar{transition:none}}",
     ].join("");
 
     function injectStyle() {
@@ -483,7 +492,7 @@ window.__ModuleLoader__.load({
     function Segmented(props) {
       return h(
         "div",
-        { className: "dul_seg", role: "group" },
+        { className: "dul_seg", role: "group", "aria-label": props.label },
         props.options.map(function (option) {
           var on = option.value === props.value;
           return h(
@@ -509,7 +518,7 @@ window.__ModuleLoader__.load({
         { className: "dul_kpi" },
         h("span", { className: "dul_kpiLabel" }, props.label),
         h("span", { className: "dul_kpiValue" }, props.value),
-        props.hint ? h("span", { className: "dul_kpiHint" }, props.hint) : null,
+        props.hint ? h("span", { className: "dul_kpiHint", title: props.hint }, props.hint) : null,
       );
     }
 
@@ -539,6 +548,10 @@ window.__ModuleLoader__.load({
           strokeLinecap: "butt",
           transform: "rotate(-90 " + size / 2 + " " + size / 2 + ")",
           opacity: highlight === null || highlight === index ? 1 : 0.25,
+          "data-selectable": typeof props.onSelect === "function" ? "true" : undefined,
+          onClick: function () {
+            if (typeof props.onSelect === "function") props.onSelect(slice);
+          },
           onMouseEnter: function () {
             if (typeof props.onHover === "function") props.onHover(index);
           },
@@ -589,10 +602,21 @@ window.__ModuleLoader__.load({
         props.rows.map(function (row, position) {
           var color = PALETTE[position % PALETTE.length];
           return h(
-            "div",
+            typeof props.onSelect === "function" ? "button" : "div",
             {
+              type: typeof props.onSelect === "function" ? "button" : undefined,
               className: "dul_clegendItem" + (props.hover === position ? " dul_clegendItemOn" : ""),
               key: row.key,
+              title: row.label + " · " + row.text,
+              onClick: function () {
+                if (typeof props.onSelect === "function") props.onSelect(row);
+              },
+              onFocus: function () {
+                if (typeof props.onHover === "function") props.onHover(position);
+              },
+              onBlur: function () {
+                if (typeof props.onHover === "function") props.onHover(null);
+              },
               onMouseEnter: function () {
                 if (typeof props.onHover === "function") props.onHover(position);
               },
@@ -635,13 +659,13 @@ window.__ModuleLoader__.load({
     }
 
     /**
-     * Two bars per day: tokens from sessions that still exist (blue) and from
-     * sessions that were deleted (green). Both are tokens, one axis — no money
-     * figure is invented without a price source.
+     * Tokens and estimated cost have separate labelled axes. Each day opens
+     * the exact session contributions rather than only a hover tooltip.
      */
     function DailyChart(props) {
       var t = props.t;
-      var rate = props.rate || 7.2;
+      var currency = t("number.system") === "en" ? "$" : "¥";
+      var rate = currency === "$" ? 1 : props.rate || 7.2;
       var series = props.series;
       var [hover, setHover] = useState(null);
 
@@ -656,10 +680,15 @@ window.__ModuleLoader__.load({
         var tokenHeight = maxTokens > 0 ? (point.tokens / maxTokens) * 100 : 0;
         var costHeight = maxCost > 0 ? ((point.cost || 0) * rate / maxCost) * 100 : 0;
         return h(
-          "div",
+          "button",
           {
+            type: "button",
             key: point.key,
             className: "dul_dayGroup" + (hover === position ? " dul_dayGroupOn" : ""),
+            "aria-label": point.key + " · " + t("tip.tokens") + " " + formatTokens(point.tokens, t) + " · " + t("tip.cost") + " " + formatCost(point.cost, rate, t),
+            onClick: function () { if (props.onSelect) props.onSelect(point.key); },
+            onFocus: function () { setHover(position); },
+            onBlur: function () { setHover(null); },
             onMouseEnter: function () {
               setHover(position);
             },
@@ -687,7 +716,7 @@ window.__ModuleLoader__.load({
                     ? h("span", { style: { color: PALETTE[0] } }, formatMetric(point.tokens))
                     : null,
                   (point.cost || 0) > 0
-                    ? h("span", { style: { color: PALETTE[1] } }, "¥" + ((point.cost || 0) * rate).toFixed(2))
+                    ? h("span", { style: { color: PALETTE[1] } }, currency + ((point.cost || 0) * rate).toFixed(2))
                     : null,
                 );
               })(tokenHeight, costHeight)
@@ -752,11 +781,11 @@ window.__ModuleLoader__.load({
               h(
                 "div",
                 { className: "dul_yaxisCol dul_yaxisRight" },
-                h("span", null, "¥" + maxCost.toFixed(2)),
-                h("span", null, "¥" + (maxCost * 0.75).toFixed(2)),
-                h("span", null, "¥" + (maxCost / 2).toFixed(2)),
-                h("span", null, "¥" + (maxCost * 0.25).toFixed(2)),
-                h("span", null, "¥0"),
+                h("span", null, currency + maxCost.toFixed(2)),
+                h("span", null, currency + (maxCost * 0.75).toFixed(2)),
+                h("span", null, currency + (maxCost / 2).toFixed(2)),
+                h("span", null, currency + (maxCost * 0.25).toFixed(2)),
+                h("span", null, currency + "0"),
               ),
             )
           : h("div", { className: "dul_empty" }, props.empty),
@@ -826,10 +855,13 @@ window.__ModuleLoader__.load({
           }
           var ratio = max > 0 ? cell.tokens / max : 0;
           cells.push(
-            h("div", {
+            h("button", {
+              type: "button",
               key: cell.key,
               className: "dul_cell",
               title: cell.key + " · " + formatTokens(cell.tokens, t),
+              "aria-label": cell.key + " · " + formatTokens(cell.tokens, t) + " " + t("tip.tokens"),
+              onClick: (function (key) { return function () { if (props.onSelect) props.onSelect(key); }; })(cell.key),
               style:
                 cell.tokens <= 0
                   ? undefined
@@ -894,8 +926,9 @@ window.__ModuleLoader__.load({
         { className: "dul_skillList" },
         props.skills.map(function (skill, index) {
           return h(
-            "div",
-            { className: "dul_skillRow", key: skill.name },
+            "button",
+            { type: "button", className: "dul_skillRow", key: skill.name, title: skill.name,
+              onClick: function () { if (props.onSelect) props.onSelect(skill.name); } },
             h("span", { className: "dul_skillDot", style: { background: PALETTE[index % PALETTE.length] } }),
             h("span", { className: "dul_skillName", title: skill.name }, skill.name),
             h("span", { className: "dul_skillCount" }, "×" + skill.count),
@@ -905,34 +938,186 @@ window.__ModuleLoader__.load({
       );
     }
 
-    /** Modal confirmation for the two sensitive actions. */
+    function usePreference(key, fallback, choices) {
+      var pair = useState(function () {
+        try {
+          var saved = window.localStorage.getItem(NS + ":" + key);
+          return choices.indexOf(saved) >= 0 ? saved : fallback;
+        } catch (_) { return fallback; }
+      });
+      useEffect(function () {
+        try { window.localStorage.setItem(NS + ":" + key, pair[0]); } catch (_) {}
+      }, [key, pair[0]]);
+      return pair;
+    }
+
+    /** Detail values come from the same records as the selected chart. */
+    function detailRows(sessions, selection, range) {
+      if (!selection || selection.kind === "skills") return [];
+      var rows = [];
+      for (var i = 0; i < sessions.length; i += 1) {
+        var session = sessions[i];
+        var totals = sessionInRange(session, range);
+        if (selection.kind !== "day" && range !== "all" && totals.tokens <= 0) continue;
+        var value = 0;
+        var tokens = totals.tokens;
+        var cost = totals.cost;
+        var matched = false;
+        if (selection.kind === "day") {
+          var day = (session.days || {})[selection.key];
+          if (!day) continue;
+          value = tokens = day.tokens || 0;
+          cost = day.cost || 0;
+          matched = value > 0 || (day.requests || 0) > 0 || cost > 0;
+        } else if (selection.kind === "skill") {
+          var skills = session.skills || [];
+          tokens = 0;
+          for (var s = 0; s < skills.length; s += 1) {
+            if (skills[s].name !== selection.key) continue;
+            value += skills[s].count || 0;
+            tokens += skills[s].tokens || 0;
+            matched = true;
+          }
+        } else if (selection.kind === "composition") {
+          value = selection.key === "other"
+            ? (!session.composition ? totals.tokens : 0)
+            : ((session.composition || {})[selection.key] || 0);
+        } else if (selection.kind === "timing") {
+          var fields = { wait: "ttftMs", reasoning: "reasoningMs", reply: "textMs", toolArg: "toolArgMs", toolExec: "toolsMs" };
+          value = selection.key === "other"
+            ? Math.max(0, (session.wallMs || 0) - (session.ttftMs || 0) - (session.reasoningMs || 0) - (session.textMs || 0) - (session.toolArgMs || 0) - (session.toolsMs || 0))
+            : (session[fields[selection.key]] || 0);
+        }
+        if (value <= 0 && !matched) continue;
+        rows.push({ session: session, value: value, tokens: tokens, cost: cost });
+      }
+      return rows.sort(function (a, b) { return b.value - a.value || (b.session.lastSeenAt || 0) - (a.session.lastSeenAt || 0); });
+    }
+
+    /** Shared modal boundary: Escape, focus containment, and focus restoration. */
+    function ModalShell(props) {
+      var root = useRef(null);
+      var latest = useRef(props);
+      latest.current = props;
+      useEffect(function () {
+        var previous = document.activeElement;
+        var first = root.current && root.current.querySelector("button:not(:disabled)");
+        if (first) first.focus();
+        function onKey(event) {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            event.stopPropagation();
+            if (!latest.current.busy) latest.current.onClose();
+          }
+          if (event.key !== "Tab" || !root.current) return;
+          var targets = root.current.querySelectorAll("button:not(:disabled),input:not(:disabled),select:not(:disabled),a[href]");
+          if (!targets.length) { event.preventDefault(); return; }
+          var firstTarget = targets[0];
+          var lastTarget = targets[targets.length - 1];
+          if (event.shiftKey && (document.activeElement === firstTarget || !root.current.contains(document.activeElement))) {
+            event.preventDefault(); lastTarget.focus();
+          } else if (!event.shiftKey && (document.activeElement === lastTarget || !root.current.contains(document.activeElement))) {
+            event.preventDefault(); firstTarget.focus();
+          }
+        }
+        document.addEventListener("keydown", onKey, true);
+        return function () {
+          document.removeEventListener("keydown", onKey, true);
+          if (previous && previous.isConnected && typeof previous.focus === "function") previous.focus();
+        };
+      }, []);
+      return h("div", {
+        className: "dul_overlay" + (props.drawer ? " dul_overlayDrawer" : ""),
+        onClick: function (event) { if (event.target === event.currentTarget && !props.busy) props.onClose(); },
+      }, h("section", { ref: root, className: props.drawer ? "dul_drawer" : "dul_dialog", role: "dialog", "aria-modal": "true", "aria-label": props.title, "aria-busy": props.busy || undefined }, props.children));
+    }
+
+    function SessionActions(props) {
+      var row = props.row;
+      var t = props.t;
+      if (!props.canManage || row.synthetic) return h("span", { className: "dul_muted" }, "—");
+      var name = row.session.title || t("untitled");
+      var options = row.state === "active" ? ["archive"] : row.state === "archived" ? ["unarchive", "delete"] : row.state === "deleted" ? ["forget"] : [];
+      if (!options.length) return "—";
+      return h("select", {
+        className: "dul_select dul_actionSelect", value: "", disabled: props.busy,
+        "aria-label": t("action.menu") + " · " + name,
+        onChange: function (event) {
+          var kind = event.target.value;
+          if (kind === "unarchive") props.onUnarchive(row.session.id);
+          else if (kind) props.onAsk(kind, row.session.id, name);
+        },
+      }, h("option", { value: "" }, t("action.menu")), options.map(function (kind) { return h("option", { key: kind, value: kind }, t(kind + ".action")); }));
+    }
+
+    function SessionTable(props) {
+      var t = props.t;
+      if (!props.rows.length) return h("div", { className: "dul_empty" }, t("empty.filtered"));
+      return h("div", { className: "dul_tableWrap" }, h("table", { className: "dul_table", "aria-label": t("sessions.title") },
+        h("thead", null, h("tr", null, ["session", "tokens", "cost", "cache", "last", "state", "actions"].map(function (key) {
+          return h("th", { key: key, scope: "col", className: ["tokens", "cost", "cache"].indexOf(key) >= 0 ? "dul_num" : undefined }, t("table." + key));
+        }))),
+        h("tbody", null, props.rows.map(function (row) {
+          var session = row.session;
+          var name = row.synthetic ? t("group.orphanTitle") : session.title || t("untitled");
+          var openable = row.state === "active" && !row.synthetic && typeof props.onOpen === "function";
+          return h("tr", { key: row.key || session.id },
+            h("td", null, h("div", { className: "dul_name" },
+              h(openable ? "button" : "span", { type: openable ? "button" : undefined, className: openable ? "dul_sessionOpen" : "dul_nameText dul_strong", title: name, onClick: openable ? function () { props.onOpen(session.id); } : undefined }, name),
+              h("div", { className: "dul_sessionMeta", title: [session.cwd, session.model].filter(Boolean).join(" · ") },
+                h("span", null, session.cwd || session.id),
+                session.model ? h("span", null, session.model) : null,
+                row.subagents > 0 ? h("span", { className: "dul_chip" }, t("group.subagents", { n: row.subagents })) : null))),
+            h("td", { className: "dul_num dul_strong", title: String(row.totals.tokens) }, formatTokens(row.totals.tokens, t)),
+            h("td", { className: "dul_num" }, formatCost(row.totals.cost, props.rate, t)),
+            h("td", { className: "dul_num" }, row.totals.input + row.totals.cacheRead > 0 ? formatPercent(cacheHitOf(row.totals)) : "—"),
+            h("td", { className: "dul_num", title: row.lastSeenAt ? new Date(row.lastSeenAt).toLocaleString() : undefined }, formatWhen(row.lastSeenAt, t)),
+            h("td", null, h(StateBadge, { state: row.state, t: t })),
+            h("td", null, h(SessionActions, Object.assign({}, props, { row: row }))));
+        }))));
+    }
+
+    function DetailDrawer(props) {
+      var selection = props.selection;
+      var t = props.t;
+      var title = selection.kind === "day" ? t("detail.day", { date: selection.key }) : selection.kind === "skill" ? t("detail.skill", { name: selection.key }) : selection.kind === "skills" ? t("skill.title") : t((selection.kind === "timing" ? "timec." : "compose.") + selection.key);
+      var rows = detailRows(props.sessions, selection, props.range);
+      var sum = rows.reduce(function (total, row) { return total + row.value; }, 0);
+      var tokens = rows.reduce(function (total, row) { return total + row.tokens; }, 0);
+      var cost = rows.reduce(function (total, row) { return total + row.cost; }, 0);
+      function formatValue(value) { return selection.kind === "timing" ? formatDuration(value, t) : selection.kind === "skill" ? "×" + value : formatTokens(value, t) + " Token"; }
+      return h(ModalShell, { title: title, drawer: true, onClose: props.onClose },
+        h("header", { className: "dul_drawerHead" }, h("h2", null, title), h("button", { type: "button", className: "dul_btn", onClick: props.onClose }, t("detail.close"))),
+        h("div", { className: "dul_drawerBody" }, selection.kind === "skills"
+          ? h(SkillList, { t: t, skills: props.skills, onSelect: props.onSkill })
+          : h(React.Fragment, null,
+              h("div", { className: "dul_detailStats" }, h("strong", { className: "dul_detailValue" }, formatValue(sum)), h("span", null, t("detail.sessions", { n: rows.length })),
+                selection.kind === "day" ? h("span", null, formatCost(cost, props.rate, t)) : selection.kind === "skill" ? h("span", null, formatTokens(tokens, t) + " " + t("detail.skillTokens")) : null),
+              h("p", { className: "dul_detailHint" }, selection.kind === "day" ? t("detail.dayHint") : t("detail.cumulative")),
+              rows.length === 0 ? h("div", { className: "dul_empty" }, t("detail.empty")) : h("ul", { className: "dul_detailList" }, rows.map(function (row) {
+                var session = row.session;
+                var openable = session.state === "active" && typeof props.onOpen === "function";
+                var name = session.title || t("untitled");
+                return h("li", { className: "dul_detailRow", key: session.id },
+                  h("div", { className: "dul_detailName" }, h(openable ? "button" : "strong", { type: openable ? "button" : undefined, className: openable ? "dul_sessionOpen" : undefined, onClick: openable ? function () { props.onOpen(session.id); } : undefined, title: name }, name),
+                    h("div", { className: "dul_sessionMeta", title: session.cwd || session.id }, h("span", null, session.cwd || session.id)), h(StateBadge, { state: session.state, t: t })),
+                  h("div", { className: "dul_detailMetric" }, h("strong", null, formatValue(row.value)),
+                    selection.kind === "day" ? h("div", { className: "dul_muted" }, formatCost(row.cost, props.rate, t)) : selection.kind === "skill" ? h("div", { className: "dul_muted" }, formatTokens(row.tokens, t) + " Token") : null));
+              })))));
+    }
+
+    /** Keep the confirmation visible until its request succeeds. */
     function ConfirmDialog(props) {
       var t = props.t;
-      useEffect(
-        function () {
-          function onKey(event) {
-            if (event.key === "Escape" && !props.busy) props.onCancel();
-          }
-          document.addEventListener("keydown", onKey);
-          return function () {
-            document.removeEventListener("keydown", onKey);
-          };
-        },
-        [props.busy],
-      );
       return h(
-        "div",
-        {
-          className: "dul_overlay",
-          onClick: function (event) {
-            if (event.target === event.currentTarget && !props.busy) props.onCancel();
-          },
-        },
+        ModalShell,
+        { title: props.title, busy: props.busy, onClose: props.onCancel },
         h(
           "div",
-          { className: "dul_dialog", role: "dialog", "aria-modal": "true", "aria-label": props.title },
+          null,
           h("h2", { className: "dul_dialogTitle" }, props.title),
           h("p", { className: "dul_dialogText" }, props.message),
+          props.error ? h("p", { className: "dul_error", role: "alert" }, props.error) : null,
           h(
             "div",
             { className: "dul_dialogActions" },
@@ -949,7 +1134,7 @@ window.__ModuleLoader__.load({
                 disabled: props.busy,
                 onClick: props.onConfirm,
               },
-              props.busy ? t("deleting") : props.confirmLabel,
+              props.busy ? t("action.working") : props.confirmLabel,
             ),
           ),
         ),
@@ -1075,7 +1260,10 @@ window.__ModuleLoader__.load({
             h(
               "h3",
               { className: "dul_scardTitle", title: session.title || session.id },
-              row.synthetic ? t("group.orphanTitle") : session.title || t("untitled"),
+              openable ? h("button", {
+                type: "button", className: "dul_sessionOpen",
+                onClick: function (event) { event.stopPropagation(); props.onOpen(session.id); },
+              }, session.title || t("untitled")) : row.synthetic ? t("group.orphanTitle") : session.title || t("untitled"),
             ),
             h(StateBadge, { state: row.state, t: t }),
           ),
@@ -1164,62 +1352,92 @@ window.__ModuleLoader__.load({
       var [phase, setPhase] = useState("loading");
       var [data, setData] = useState(null);
       var [error, setError] = useState("");
-      var [range, setRange] = useState("all");
-      var [depth, setDepth] = useState("root");
+      var [range, setRange] = usePreference("range", "all", ["all", "30d", "7d"]);
+      var [depth, setDepth] = usePreference("depth", "root", ["root", "all"]);
       var [scope, setScope] = useState("all");
       var [query, setQuery] = useState("");
       var [loading, setLoading] = useState(false);
-      var [pendingDelete, setPendingDelete] = useState(null);
       var [confirm, setConfirm] = useState(null);
       var [busy, setBusy] = useState(false);
       var [notice, setNotice] = useState("");
+      var [noticeError, setNoticeError] = useState(false);
+      var [dialogError, setDialogError] = useState("");
+      var [detail, setDetail] = useState(null);
+      var [sort, setSort] = usePreference("sort", "recent", ["recent", "tokens", "cost", "turns"]);
+      var [view, setView] = usePreference("view", "list", ["list", "cards"]);
+      var [more, setMore] = usePreference("insights", "closed", ["open", "closed"]);
+      var [page, setPage] = useState(0);
       var [hoverSlice, setHoverSlice] = useState(null);
       var [hoverTime, setHoverTime] = useState(null);
-      var [dense, setDense] = useState(true);
+      var dense = view === "list";
+      var requestSerial = useRef(0);
+      var mounted = useRef(true);
+      var operation = useRef(false);
 
       function load(scan) {
+        if (operation.current) return;
+        var serial = ++requestSerial.current;
         setLoading(true);
         request(BASE + "/state" + (scan ? "?scan=1" : ""))
           .then(function (payload) {
+            if (!mounted.current || serial !== requestSerial.current) return;
             setData(payload);
             setPhase("ready");
             setError("");
           })
           .catch(function (failure) {
+            if (!mounted.current || serial !== requestSerial.current) return;
             setError(String(failure && failure.message ? failure.message : failure));
-            setPhase("error");
+            if (data === null) setPhase("error");
           })
           .then(function () {
+            if (!mounted.current || serial !== requestSerial.current) return;
             setLoading(false);
           });
       }
 
       useEffect(function () {
+        mounted.current = true;
         load(true);
+        return function () { mounted.current = false; requestSerial.current += 1; };
       }, []);
 
+      useEffect(function () { setPage(0); }, [scope, query, range, depth, sort, view]);
+
       function act(sessionId, path) {
+        if (operation.current) return;
+        operation.current = true;
+        requestSerial.current += 1;
+        setLoading(false);
         setBusy(true);
         setNotice("");
+        setDialogError("");
         request(BASE + path, { method: "POST", body: { sessionId: sessionId } })
           .then(function (payload) {
+            if (!mounted.current) return;
             setData(payload.state);
-            setPendingDelete(null);
             setConfirm(null);
+            setNoticeError(false);
+            setNotice(t("action.done." + path.slice(1)));
           })
           .catch(function (failure) {
-            setNotice(t("delete.error." + (failure && failure.code ? failure.code : "generic")));
-            setPendingDelete(null);
-            setConfirm(null);
+            if (!mounted.current) return;
+            var key = "delete.error." + (failure && failure.code ? failure.code : "generic");
+            var message = t(key);
+            if (message === key) message = t("delete.error.generic");
+            if (confirm !== null) setDialogError(message);
+            else { setNoticeError(true); setNotice(message); }
           })
           .then(function () {
-            setBusy(false);
+            operation.current = false;
+            if (mounted.current) setBusy(false);
           });
       }
 
       /** Open the confirmation dialog for one sensitive action. */
       function ask(kind, sessionId, name) {
         setNotice("");
+        setDialogError("");
         setConfirm({ kind: kind, id: sessionId, name: name });
       }
 
@@ -1234,7 +1452,6 @@ window.__ModuleLoader__.load({
                 ? "/forget"
                 : "/unarchive";
         var id = confirm.id;
-        setConfirm(null);
         act(id, path);
       }
 
@@ -1272,6 +1489,19 @@ window.__ModuleLoader__.load({
 
           for (var i = 0; i < everySession.length; i += 1) {
             var session = everySession[i];
+            // Fixed-window charts always describe the full ledger; list and
+            // KPI range changes must not silently remove older chart activity.
+            var sessionDays = session.days || {};
+            for (var key in sessionDays) {
+              if (!Object.prototype.hasOwnProperty.call(sessionDays, key)) continue;
+              var dayBucket = buckets[key];
+              if (dayBucket === undefined) continue;
+              var dayTokens = sessionDays[key].tokens || 0;
+              if (session.state === "deleted") dayBucket.deleted += dayTokens;
+              else dayBucket.alive += dayTokens;
+              dayBucket.tokens += dayTokens;
+              dayBucket.cost += sessionDays[key].cost || 0;
+            }
             var totals = sessionInRange(session, range);
             if (range !== "all" && totals.tokens <= 0) continue;
 
@@ -1312,17 +1542,6 @@ window.__ModuleLoader__.load({
               skillMap[skill.name] = bucket;
             }
 
-            var sessionDays = session.days || {};
-            for (var key in sessionDays) {
-              if (!Object.prototype.hasOwnProperty.call(sessionDays, key)) continue;
-              var dayBucket = buckets[key];
-              if (dayBucket === undefined) continue;
-              var dayTokens = sessionDays[key].tokens || 0;
-              if (session.state === "deleted") dayBucket.deleted += dayTokens;
-              else dayBucket.alive += dayTokens;
-              dayBucket.tokens += dayTokens;
-              dayBucket.cost += sessionDays[key].cost || 0;
-            }
           }
 
           var skills = Object.keys(skillMap)
@@ -1331,8 +1550,7 @@ window.__ModuleLoader__.load({
             })
             .sort(function (left, right) {
               return right.count - left.count || right.lastAt - left.lastAt;
-            })
-            .slice(0, 8);
+            });
 
           var current = emptyAggregate();
           current.input = byState.active.input + byState.archived.input;
@@ -1383,9 +1601,14 @@ window.__ModuleLoader__.load({
             if (scope !== "all" && row.state !== scope) return false;
             if (needle === "") return true;
             return row.haystack.indexOf(needle) !== -1;
+          }).sort(function (left, right) {
+            if (sort === "tokens") return right.totals.tokens - left.totals.tokens || right.lastSeenAt - left.lastSeenAt;
+            if (sort === "cost") return right.totals.cost - left.totals.cost || right.lastSeenAt - left.lastSeenAt;
+            if (sort === "turns") return right.turns - left.turns || right.lastSeenAt - left.lastSeenAt;
+            return right.lastSeenAt - left.lastSeenAt;
           });
         },
-        [derived, scope, query],
+        [derived, scope, query, sort],
       );
 
       var head = h(
@@ -1395,7 +1618,6 @@ window.__ModuleLoader__.load({
           "div",
           { className: "dul_titles" },
           h("h1", { className: "dul_title" }, t("page.title")),
-          h("p", { className: "dul_subtitle" }, t("page.subtitle")),
         ),
         h(
           "div",
@@ -1421,25 +1643,8 @@ window.__ModuleLoader__.load({
               )
             : null,
           h(Segmented, {
-            value: depth,
-            onChange: setDepth,
-            options: [
-              { value: "root", label: t("depth.root") },
-              { value: "all", label: t("depth.all") },
-            ],
-          }),
-          h(Segmented, {
-            value: dense ? "compact" : "comfortable",
-            onChange: function (value) {
-              setDense(value === "compact");
-            },
-            options: [
-              { value: "compact", label: t("density.compact") },
-              { value: "comfortable", label: t("density.comfortable") },
-            ],
-          }),
-          h(Segmented, {
             value: range,
+            label: t("range.label"),
             onChange: setRange,
             options: [
               { value: "all", label: t("range.all") },
@@ -1449,7 +1654,7 @@ window.__ModuleLoader__.load({
           }),
           h(
             "button",
-            { type: "button", className: "dul_btn", disabled: loading, onClick: function () { load(true); } },
+            { type: "button", className: "dul_btn", disabled: loading || busy, onClick: function () { load(true); } },
             loading ? t("loading") : t("refresh"),
           ),
         ),
@@ -1501,211 +1706,72 @@ window.__ModuleLoader__.load({
       ];
 
 
-      return h(
-        "div",
-        { className: "dul_page" + (dense ? " dul_dense" : "") },
-        h(
-          "div",
-          { className: "dul_inner" },
-          head,
-          h(
-            "div",
-            { className: "dul_top" },
-            h(Kpi, {
-              label: t("kpi.sessions"),
-              value: String(derived.total.sessions),
-              hint: t("kpi.sessionsBreak", {
-                a: derived.byState.active.sessions,
-                b: derived.byState.archived.sessions,
-                d: derived.byState.deleted.sessions,
-              }),
-            }),
-            h(Kpi, {
-              label: t("kpi.tokens"),
-              value: formatTokens(derived.total.tokens, t),
-              hint: t("kpi.tokenBreak", {
-                session: formatTokens(derived.rootTotals.tokens, t),
-                sub: formatTokens(derived.subagents.tokens, t),
-                turns: derived.total.turns,
-              }),
-            }),
-            h(Kpi, {
-              label: t("kpi.cost"),
-              value: formatCost(derived.total.cost, data.usdToCny, t),
-              hint: t("kpi.costBreak", {
-                session: formatCost(derived.rootTotals.cost, data.usdToCny, t),
-                sub: formatCost(derived.subagents.cost, data.usdToCny, t),
-              }),
-            }),
-            h(Kpi, {
-              label: t("kpi.cache"),
-              value: derived.total.input + derived.total.cacheRead > 0 ? formatPercent(cacheHitOf(derived.total)) : "—",
-              hint: t("kpi.cacheHint"),
-            }),
-            h(Kpi, {
-              label: t("kpi.tools"),
-              value: String(derived.timing.toolCalls),
-              hint: t("kpi.toolsHint", { d: formatDuration(derived.timing.toolsMs, t) }),
-            }),
-            h(Kpi, {
-              label: t("kpi.activeTime"),
-              value: formatDuration(derived.timing.wallMs, t),
-              hint: t("kpi.modelHint", { n: derived.timing.modelCalls }),
-            }),
-            h(DailyChart, {
-              t: t,
-              cardClass: "dul_chartCard",
-              rate: data.usdToCny,
-              title: t("chart.title"),
-              hint: t("chart.hintShort"),
-              empty: t("chart.empty"),
-              series: derived.chart,
-            }),
-          ),
-          h(
-            "div",
-            { className: "dul_grid2" },
-            h(
-              "div",
-              { className: "dul_card" },
-              h(
-                "div",
-                { className: "dul_cardHead" },
-                h("span", { className: "dul_cardTitle" }, t("compose.title")),
-                h("span", { className: "dul_cardHint" }, t("compose.hint")),
-              ),
-              h(
-                "div",
-                { className: "dul_donutRow" },
-                h(Donut, {
-                  size: 108,
-                  stroke: 12,
-                  slices: composition,
-                  highlight: hoverSlice,
-                  onHover: setHoverSlice,
-                  centerValue: formatTokens(composeTotal, t),
-                  centerLabel: t("donut.total"),
-                }),
-                h(CompositionLegend, { rows: composition, hover: hoverSlice, onHover: setHoverSlice }),
-              ),
-            ),
-            h(
-              "div",
-              { className: "dul_card" },
-              h(
-                "div",
-                { className: "dul_cardHead" },
-                h("span", { className: "dul_cardTitle" }, t("timec.title")),
-                h("span", { className: "dul_cardHint" }, t("timec.hint")),
-              ),
-              h(
-                "div",
-                { className: "dul_donutRow" },
-                h(Donut, {
-                  size: 108,
-                  stroke: 12,
-                  slices: timeRows,
-                  highlight: hoverTime,
-                  onHover: setHoverTime,
-                  centerValue: formatDuration(spent.wallMs, t),
-                  centerLabel: t("timec.active"),
-                }),
-                h(CompositionLegend, { rows: timeRows, hover: hoverTime, onHover: setHoverTime }),
-              ),
-            ),
-          ),
-          h(
-            "div",
-            { className: "dul_layout" },
-            h(
-              "div",
-              { className: "dul_rail" },
-              h(Heatmap, {
-                t: t,
-                title: t("heat.title"),
-                hint: t("heat.hint"),
-                less: t("heat.less"),
-                more: t("heat.more"),
-                series: derived.heat,
-              }),
-              h(
-                "div",
-                { className: "dul_card" },
-                h(
-                  "div",
-                  { className: "dul_cardHead" },
-                  h("span", { className: "dul_cardTitle" }, t("skill.title")),
-                  h("span", { className: "dul_cardHint" }, t("skill.hint")),
-                ),
-                h(SkillList, { skills: derived.skills, t: t }),
-              ),
-            ),
-            h(
-              "div",
-              { className: "dul_card" },
-              h(
-                "div",
-                { className: "dul_filters" },
-                h(Segmented, {
-                  value: scope,
-                  onChange: setScope,
-                  options: [
-                    { value: "all", label: t("filter.all") },
-                    { value: "active", label: t("filter.active") },
-                    { value: "archived", label: t("filter.archived") },
-                    { value: "deleted", label: t("filter.deleted") },
-                  ],
-                }),
-                h("input", {
-                  className: "dul_search",
-                  type: "search",
-                  value: query,
-                  placeholder: t("search.placeholder"),
-                  onChange: function (event) {
-                    setQuery(event.target.value);
-                  },
-                }),
-                h("span", { className: "dul_cardHint" }, t("rows.count", { n: filtered.length })),
-              ),
-              notice !== "" ? h("p", { className: "dul_error" }, notice) : null,
-              h(SessionCards, {
-                rows: filtered,
-                t: t,
-                canManage: data.canDelete === true && data.canArchive === true,
-                busy: busy,
-                rate: data.usdToCny,
-                onAsk: ask,
-                onOpen: props.onOpenSession,
-                aggregate:
-                  (scope === "all" || scope === "deleted") && derived.byState.forgotten.sessions > 0
-                    ? {
-                        sessions: derived.byState.forgotten.sessions,
-                        tokens: derived.byState.forgotten.tokens,
-                        cost: derived.byState.forgotten.cost,
-                      }
-                    : null,
-                onUnarchive: function (id) {
-                  act(id, "/unarchive");
-                },
-              }),
-            ),
-          ),
-        ),
-        confirm !== null
-          ? h(ConfirmDialog, {
-              t: t,
-              busy: busy,
-              danger: confirm.kind === "delete",
-              title: t("dialog." + confirm.kind + ".title"),
-              message: t("dialog." + confirm.kind + ".body", { name: confirm.name }),
-              confirmLabel: t("dialog." + confirm.kind + ".confirm"),
-              onConfirm: confirmRun,
-              onCancel: function () {
-                setConfirm(null);
-              },
-            })
-          : null,
-      );
+      function selectDay(key) { setDetail({ kind: "day", key: key }); }
+      function selectSkill(key) { setDetail({ kind: "skill", key: key }); }
+      function breakdown(kind, title, rows, hover, onHover) {
+        function select(row) { setDetail({ kind: kind, key: row.key }); }
+        return h("section", { className: "dul_card dul_compositionCard", "aria-label": title },
+          h("div", { className: "dul_cardHead" }, h("span", { className: "dul_cardTitle" }, title)),
+          h("div", { className: "dul_donutRow" },
+            h(Donut, { size: 72, stroke: 9, slices: rows, highlight: hover, onHover: onHover, onSelect: select,
+              centerValue: kind === "timing" ? formatDuration(spent.wallMs, t) : formatTokens(composeTotal, t),
+              centerLabel: kind === "timing" ? t("timec.active") : t("donut.total") }),
+            h(CompositionLegend, { rows: rows, hover: hover, onHover: onHover, onSelect: select })));
+      }
+      var pageSize = 25;
+      var pages = Math.max(1, Math.ceil(filtered.length / pageSize));
+      var currentPage = Math.min(page, pages - 1);
+      var visibleRows = filtered.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
+      var counts = { all: 0, active: 0, archived: 0, deleted: 0 };
+      derived.rows.forEach(function (row) { if (row.state !== "forgotten") { counts.all += 1; if (counts[row.state] !== undefined) counts[row.state] += 1; } });
+      var aggregate = query.trim() === "" && (scope === "all" || scope === "deleted") && derived.byState.forgotten.sessions > 0 ? derived.byState.forgotten : null;
+      var sessionProps = {
+        rows: visibleRows, t: t, canManage: data.canDelete === true && data.canArchive === true,
+        busy: busy, rate: data.usdToCny, onAsk: ask, onOpen: props.onOpenSession,
+        onUnarchive: function (id) { act(id, "/unarchive"); },
+      };
+      return h("div", { className: "dul_page" + (dense ? " dul_dense" : "") },
+        h("div", { className: "dul_inner" }, head,
+          error ? h("p", { className: "dul_error dul_refreshError", role: "alert" }, t("error.load") + " " + error) : null,
+          h("section", { className: "dul_top", "aria-label": t("overview.title") },
+            h(Kpi, { label: t("kpi.sessions"), value: String(derived.total.sessions), hint: t("kpi.sessionsBreak", { a: derived.byState.active.sessions, b: derived.byState.archived.sessions, d: derived.byState.deleted.sessions }) }),
+            h(Kpi, { label: t("kpi.tokens"), value: formatTokens(derived.total.tokens, t), hint: t("kpi.tokenBreak", { session: formatTokens(derived.rootTotals.tokens, t), sub: formatTokens(derived.subagents.tokens, t), turns: derived.total.turns }) }),
+            h(Kpi, { label: t("kpi.cost"), value: formatCost(derived.total.cost, data.usdToCny, t), hint: t("kpi.costBreak", { session: formatCost(derived.rootTotals.cost, data.usdToCny, t), sub: formatCost(derived.subagents.cost, data.usdToCny, t) }) }),
+            h(Kpi, { label: t("kpi.cache"), value: derived.total.input + derived.total.cacheRead > 0 ? formatPercent(cacheHitOf(derived.total)) : "—", hint: t("kpi.cacheHint") }),
+            h(Kpi, { label: t("kpi.tools"), value: String(derived.timing.toolCalls), hint: t("kpi.toolsHint", { d: formatDuration(derived.timing.toolsMs, t) }) }),
+            h(Kpi, { label: t("kpi.activeTime"), value: formatDuration(derived.timing.wallMs, t), hint: t("kpi.modelHint", { n: derived.timing.modelCalls }) })),
+          h("div", { className: "dul_analysis" },
+            h(DailyChart, { t: t, cardClass: "dul_chartCard", rate: data.usdToCny, title: t("chart.title"), empty: t("chart.empty"), series: derived.chart, onSelect: selectDay }),
+            breakdown("composition", t("compose.title"), composition, hoverSlice, setHoverSlice),
+            breakdown("timing", t("timec.title"), timeRows, hoverTime, setHoverTime)),
+          h("details", { className: "dul_more", open: more === "open", onToggle: function (event) { var value = event.currentTarget.open ? "open" : "closed"; if (value !== more) setMore(value); } },
+            h("summary", null, t("insights.title")),
+            h("div", { className: "dul_moreBody" },
+              h(Heatmap, { t: t, title: t("heat.title"), less: t("heat.less"), more: t("heat.more"), series: derived.heat, onSelect: selectDay }),
+              h("section", { className: "dul_card" },
+                h("div", { className: "dul_cardHead" }, h("span", { className: "dul_cardTitle" }, t("skill.title")),
+                  derived.skills.length > 6 ? h("button", { type: "button", className: "dul_link", onClick: function () { setDetail({ kind: "skills" }); } }, t("detail.allSkills", { n: derived.skills.length })) : null),
+                h(SkillList, { skills: derived.skills.slice(0, 6), t: t, onSelect: selectSkill })))),
+          h("section", { className: "dul_card dul_sessions", "aria-label": t("sessions.title"), "aria-busy": busy || loading },
+            h("div", { className: "dul_sessionsHead" }, h("h2", { className: "dul_sessionsTitle" }, t("sessions.title")),
+              h("div", { className: "dul_sessionTools" },
+                h(Segmented, { value: depth, onChange: setDepth, label: t("depth.label"), options: [{ value: "root", label: t("depth.root") }, { value: "all", label: t("depth.all") }] }),
+                h(Segmented, { value: view, onChange: setView, label: t("view.label"), options: [{ value: "list", label: t("view.list") }, { value: "cards", label: t("view.cards") }] }))),
+            h("div", { className: "dul_filters" },
+              h(Segmented, { value: scope, onChange: setScope, label: t("filter.label"), options: ["all", "active", "archived", "deleted"].map(function (value) { return { value: value, label: t("filter." + value) + " " + counts[value] }; }) }),
+              h("input", { className: "dul_search", type: "search", value: query, placeholder: t("search.placeholder"), "aria-label": t("search.placeholder"), onChange: function (event) { setQuery(event.target.value); } }),
+              h("select", { className: "dul_select", value: sort, "aria-label": t("sort.label"), onChange: function (event) { setSort(event.target.value); } }, ["recent", "tokens", "cost", "turns"].map(function (key) { return h("option", { key: key, value: key }, t("sort." + key)); })),
+              query || scope !== "all" || sort !== "recent" ? h("button", { type: "button", className: "dul_btn", onClick: function () { setQuery(""); setScope("all"); setSort("recent"); } }, t("filter.reset")) : null),
+            notice ? h("p", { className: "dul_notice " + (noticeError ? "dul_noticeError" : "dul_noticeSuccess"), role: noticeError ? "alert" : "status" }, notice) : null,
+            dense ? h(SessionTable, sessionProps) : h(SessionCards, sessionProps),
+            aggregate ? h("div", { className: "dul_forgotten" }, t("forgotten.summary", { n: aggregate.sessions, tokens: formatTokens(aggregate.tokens, t), cost: formatCost(aggregate.cost, data.usdToCny, t) })) : null,
+            h("div", { className: "dul_resultStatus" }, h("span", { "aria-live": "polite" }, t("list.results", { shown: filtered.length, total: counts.all })),
+              pages > 1 ? h("div", { className: "dul_pager" },
+                h("button", { type: "button", className: "dul_btn", disabled: currentPage === 0, onClick: function () { setPage(currentPage - 1); } }, t("page.previous")),
+                h("span", null, (currentPage + 1) + " / " + pages),
+                h("button", { type: "button", className: "dul_btn", disabled: currentPage + 1 === pages, onClick: function () { setPage(currentPage + 1); } }, t("page.next"))) : null))),
+        confirm !== null ? h(ConfirmDialog, { t: t, busy: busy, error: dialogError, danger: confirm.kind === "delete", title: t("dialog." + confirm.kind + ".title"), message: t("dialog." + confirm.kind + ".body", { name: confirm.name }), confirmLabel: t("dialog." + confirm.kind + ".confirm"), onConfirm: confirmRun, onCancel: function () { setConfirm(null); setDialogError(""); } }) : null,
+        detail !== null ? h(DetailDrawer, { selection: detail, t: t, sessions: data.sessions || [], skills: derived.skills, range: range, rate: data.usdToCny, onClose: function () { setDetail(null); }, onSkill: selectSkill, onOpen: props.onOpenSession }) : null);
     }
 
     // ---------------------------------------------------------------------
@@ -1713,6 +1779,41 @@ window.__ModuleLoader__.load({
     // ---------------------------------------------------------------------
 
     var zh = {
+      "overview.title": "用量概览",
+      "sessions.title": "会话明细",
+      "range.label": "统计范围",
+      "depth.label": "子代理统计",
+      "view.label": "显示方式",
+      "view.list": "列表",
+      "view.cards": "卡片",
+      "filter.label": "会话状态",
+      "filter.reset": "清除筛选",
+      "sort.label": "会话排序",
+      "sort.recent": "最近活跃",
+      "sort.tokens": "Token 最多",
+      "sort.cost": "费用最高",
+      "sort.turns": "轮次最多",
+      "table.cost": "预估费用",
+      "table.actions": "操作",
+      "action.menu": "操作",
+      "action.working": "处理中…",
+      "action.done.archive": "会话已归档，用量已保留。",
+      "action.done.unarchive": "已取消归档。",
+      "action.done.delete": "会话已删除，账本用量已保留。",
+      "action.done.forget": "已从列表收起，用量仍计入合计。",
+      "list.results": "{shown} / {total} 个会话",
+      "page.previous": "上一页",
+      "page.next": "下一页",
+      "insights.title": "活跃度与技能",
+      "detail.close": "关闭",
+      "detail.day": "{date} · 每日用量",
+      "detail.skill": "技能加载 · {name}",
+      "detail.sessions": "{n} 个相关会话",
+      "detail.skillTokens": "技能注入 Token",
+      "detail.dayHint": "当日本地日期的用量，包含已归档和已删除会话。",
+      "detail.cumulative": "所选范围内有用量会话的累计记录，包含子代理。",
+      "detail.empty": "没有找到相关用量记录。",
+      "detail.allSkills": "查看全部 {n} 项",
       "number.system": "zh",
       "panel.label": "用量账本",
       "page.title": "用量账本",
@@ -1724,8 +1825,8 @@ window.__ModuleLoader__.load({
       "header.balance": "DeepSeek 余额",
       "density.compact": "紧凑",
       "density.comfortable": "宽松",
-      "depth.root": "顶层会话",
-      "depth.all": "含子代理",
+      "depth.root": "仅主会话",
+      "depth.all": "合并子代理",
       "kpi.current": "当前合计",
       "kpi.currentHint": "{n} 个会话 · 未归档 + 已归档",
       "kpi.deleted": "已删除",
@@ -1773,7 +1874,6 @@ window.__ModuleLoader__.load({
       "compose.tool": "工具结果",
       "compose.other": "未分类",
       "skill.title": "技能加载",
-      "skill.hint": "本页范围内被注入的技能",
       "skill.empty": "还没有技能记录",
       "states.title": "状态构成",
       "states.hint": "按 Token 计",
@@ -1854,7 +1954,7 @@ window.__ModuleLoader__.load({
       "delete.error.invalid-session-id": "会话标识不合法。",
       "delete.error.park-failed": "删除失败：无法移走会话日志，已回滚。",
       "delete.error.forbidden": "请求被拒绝。",
-      "delete.error.generic": "删除失败，详情见运行日志。",
+      "delete.error.generic": "操作失败，详情见运行日志。",
       "time.now": "刚刚",
       "time.minutes": "{n} 分钟前",
       "time.hours": "{n} 小时前",
@@ -1862,6 +1962,41 @@ window.__ModuleLoader__.load({
     };
 
     var en = {
+      "overview.title": "Usage overview",
+      "sessions.title": "Sessions",
+      "range.label": "Usage period",
+      "depth.label": "Subagent totals",
+      "view.label": "View",
+      "view.list": "List",
+      "view.cards": "Cards",
+      "filter.label": "Session state",
+      "filter.reset": "Clear filters",
+      "sort.label": "Sort sessions",
+      "sort.recent": "Recently active",
+      "sort.tokens": "Most tokens",
+      "sort.cost": "Highest cost",
+      "sort.turns": "Most turns",
+      "table.cost": "Est. cost",
+      "table.actions": "Actions",
+      "action.menu": "Actions",
+      "action.working": "Working…",
+      "action.done.archive": "Session archived. Its usage is retained.",
+      "action.done.unarchive": "Session unarchived.",
+      "action.done.delete": "Session deleted. Ledger usage is retained.",
+      "action.done.forget": "Session hidden. Its usage still counts in totals.",
+      "list.results": "{shown} / {total} sessions",
+      "page.previous": "Previous",
+      "page.next": "Next",
+      "insights.title": "Activity and skills",
+      "detail.close": "Close",
+      "detail.day": "{date} · Daily usage",
+      "detail.skill": "Skill loads · {name}",
+      "detail.sessions": "{n} related sessions",
+      "detail.skillTokens": "skill-injection tokens",
+      "detail.dayHint": "Usage on this local date, including archived and deleted sessions.",
+      "detail.cumulative": "Cumulative records for sessions with usage in the selected period, including subagents.",
+      "detail.empty": "No related usage records.",
+      "detail.allSkills": "View all {n}",
       "number.system": "en",
       "panel.label": "Usage ledger",
       "page.title": "Usage ledger",
@@ -1873,8 +2008,8 @@ window.__ModuleLoader__.load({
       "header.balance": "DeepSeek balance",
       "density.compact": "Compact",
       "density.comfortable": "Comfortable",
-      "depth.root": "Top-level",
-      "depth.all": "With subagents",
+      "depth.root": "Main only",
+      "depth.all": "Include subagents",
       "kpi.current": "Current",
       "kpi.currentHint": "{n} sessions · active + archived",
       "kpi.deleted": "Deleted",
@@ -1922,7 +2057,6 @@ window.__ModuleLoader__.load({
       "compose.tool": "Tool results",
       "compose.other": "Unclassified",
       "skill.title": "Skill loads",
-      "skill.hint": "Skills injected in this scope",
       "skill.empty": "No skill recorded yet",
       "states.title": "State composition",
       "states.hint": "By tokens",
@@ -1958,6 +2092,7 @@ window.__ModuleLoader__.load({
       "state.active": "Active",
       "state.archived": "Archived",
       "state.deleted": "Deleted",
+      "state.forgotten": "Not listed",
       "status.subagent": "Subagent",
       "group.subagents": "{n} subagents",
       "group.subagentsDeleted": "{n} subagents · {m} deleted",
@@ -2002,7 +2137,7 @@ window.__ModuleLoader__.load({
       "delete.error.invalid-session-id": "Invalid session id.",
       "delete.error.park-failed": "Deletion failed: the session log could not be moved; rolled back.",
       "delete.error.forbidden": "Request rejected.",
-      "delete.error.generic": "Deletion failed — check the run log.",
+      "delete.error.generic": "Operation failed — check the run log.",
       "time.now": "just now",
       "time.minutes": "{n} min ago",
       "time.hours": "{n} h ago",
@@ -2073,7 +2208,7 @@ window.__ModuleLoader__.load({
     return {
       inject: inject,
       apply: apply,
-      __test: { groupSessions: groupSessions, normalizeId: normalizeId },
+      __test: { groupSessions: groupSessions, normalizeId: normalizeId, detailRows: detailRows },
     };
   },
 });
