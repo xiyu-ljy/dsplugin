@@ -208,7 +208,7 @@ window.__ModuleLoader__.load({
       ".dul_sessions{padding:0;gap:0}.dul_sessionsHead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:9px 11px 0}.dul_sessionsTitle{margin:0;font-size:13px;line-height:20px;font-weight:600}.dul_sessionTools{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.dul_sessions .dul_filters{padding:8px 11px;gap:6px}.dul_search{height:28px;min-width:150px}.dul_select{max-width:100%;height:28px;border:1px solid var(--dsw-alias-border-l2);border-radius:6px;background:var(--dsw-alias-bg-layer-1);color:var(--dsw-alias-label-primary);font:inherit;font-size:11.5px;padding:0 6px}.dul_tableWrap{overflow-x:auto}.dul_table{table-layout:fixed;min-width:640px}.dul_table th{padding:6px 10px;background:var(--dsw-alias-bg-layer-1)}.dul_table td{padding:7px 10px}.dul_table th:first-child{width:38%}.dul_table th:last-child{width:68px}.dul_table .dul_num{text-align:right}.dul_table .dul_nameText,.dul_table .dul_path{max-width:none}.dul_sessionOpen{appearance:none;display:block;max-width:100%;padding:0;border:0;background:transparent;color:var(--dsw-alias-label-primary);font:inherit;font-weight:600;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}.dul_sessionOpen:hover{text-decoration:underline}.dul_sessionMeta{display:flex;gap:6px;align-items:center;min-width:0;font-size:11px;color:var(--dsw-alias-label-secondary)}.dul_sessionMeta>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dul_actionSelect{width:68px;padding:0 3px}.dul_sessions .dul_cards{padding:0 11px 10px}.dul_sessions .dul_forgotten{margin:0;padding:8px 11px}.dul_resultStatus{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:7px 11px;font-size:11px;color:var(--dsw-alias-label-secondary)}.dul_notice{margin:0;padding:6px 11px;font-size:12px}.dul_noticeError{color:var(--dsw-alias-state-error-primary)}.dul_noticeSuccess{color:var(--dsw-alias-state-success-primary)}.dul_pager{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.dul_refreshError{padding:8px 10px;border:1px solid var(--dsw-alias-state-error-primary);border-radius:7px}",
       ".dul_overviewContent{display:flex;flex-direction:column;gap:8px;min-width:0}.dul_overviewContent[hidden]{display:none}.dul_detailPanel{min-width:0;border:1px solid var(--dsw-alias-border-l1);border-radius:9px;background:var(--dsw-alias-bg-layer-1);color:var(--dsw-alias-label-primary);font-size:12px;line-height:18px}.dul_detailHead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_detailBack{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto}.dul_detailCrumb{display:flex;align-items:center;gap:9px;min-width:0;color:var(--dsw-alias-label-secondary)}.dul_detailCrumb h2{margin:0;font-size:13px;line-height:20px;font-weight:600;color:var(--dsw-alias-label-primary);overflow-wrap:anywhere}.dul_detailBody{padding:14px}.dul_detailStats{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 14px;border:1px solid var(--dsw-alias-border-l1);border-radius:8px;background:var(--dsw-alias-bg-base)}.dul_detailStat{display:flex;flex-direction:column;gap:3px}.dul_detailStatLabel{font-size:11px;color:var(--dsw-alias-label-secondary)}.dul_detailValue{font-size:24px;line-height:30px;font-weight:600;font-variant-numeric:tabular-nums}.dul_detailSecondary{font-size:16px;line-height:24px;font-weight:600;font-variant-numeric:tabular-nums}.dul_detailHint{color:var(--dsw-alias-label-secondary);font-size:11px;margin:8px 0 14px}.dul_detailListHead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:6px;color:var(--dsw-alias-label-secondary);font-size:11px;border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_detailRow{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;padding:10px 0;border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_detailRow:last-child{border-bottom:0}.dul_detailMetric{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.dul_detailName{min-width:0}.dul_detailTitle{display:flex;align-items:center;gap:8px;min-width:0}.dul_detailTitle>.dul_badge{flex:0 0 auto;font-size:10px;line-height:16px;padding:0 5px}.dul_detailSessionName{display:block;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;line-height:18px;font-weight:600}.dul_detailList{margin:0;padding:0;list-style:none}.dul_detailRow .dul_sessionMeta{margin-top:3px}.dul_dialog{color:var(--dsw-alias-label-primary);background:var(--dsw-alias-bg-layer-1)}.dul_dialog .dul_error{margin:3px 0}.dul_listHint{font-size:11px;color:var(--dsw-alias-label-secondary)}@container(max-width:540px){.dul_detailBody{padding:10px}.dul_detailHead{padding:9px 10px;gap:8px}.dul_detailTitle{flex-wrap:wrap;gap:3px 6px}.dul_detailRow{gap:10px}.dul_detailValue{font-size:21px;line-height:28px}}",
       "@container (max-width:820px){.dul_top{grid-template-columns:repeat(3,minmax(0,1fr))}.dul_kpi:nth-child(3){border-right:0}.dul_kpi:nth-child(-n+3){border-bottom:1px solid var(--dsw-alias-border-l1)}}@container (max-width:820px){.dul_analysis{grid-template-columns:repeat(2,minmax(0,1fr))}.dul_analysis>.dul_chartCard{grid-column:1/-1;grid-row:auto}.dul_analysis>.dul_heatCard,.dul_analysis>.dul_skillCard,.dul_analysis>.dul_timeCard{grid-column:auto;grid-row:auto}.dul_analysis>.dul_chartCard .dul_plotRow{flex:0 0 104px}.dul_analysis>.dul_chartCard .dul_plot,.dul_analysis>.dul_chartCard .dul_yaxisCol{height:104px;min-height:104px}.dul_analysis .dul_plot,.dul_analysis .dul_yaxisCol{height:72px}.dul_top{grid-template-columns:repeat(3,minmax(0,1fr))}.dul_table th:first-child{width:32%}}@container (max-width:540px){.dul_analysis{grid-template-columns:minmax(0,1fr)}.dul_analysis>.dul_chartCard{grid-column:auto}.dul_top{grid-template-columns:repeat(2,minmax(0,1fr))}.dul_kpi:nth-child(3){border-right:1px solid var(--dsw-alias-border-l1)}.dul_kpi:nth-child(even){border-right:0}.dul_kpi:nth-child(-n+4){border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_head{align-items:flex-start}.dul_tools{width:100%}.dul_search{flex-basis:100%}.dul_sessionTools{width:100%;justify-content:space-between}}@media(pointer:coarse){.dul_btn,.dul_segBtn,.dul_select{min-height:36px}.dul_search{height:36px;font-size:16px}.dul_analysis .dul_heatRow{grid-template-columns:18px repeat(8,24px);gap:4px}.dul_skillRow{min-height:36px}}@media(prefers-reduced-motion:reduce){.dul_bar{transition:none}}",
-      ".dul_navigation{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:0 0 5px;background:var(--dsw-alias-bg-base);border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_tabs{display:flex;align-items:center;gap:4px}.dul_tab{appearance:none;border:0;border-radius:6px;background:transparent;color:var(--dsw-alias-label-secondary);font:inherit;font-size:12px;line-height:18px;padding:6px 12px;cursor:pointer}.dul_tab[aria-selected=true]{background:var(--dsw-alias-bg-layer-2);color:var(--dsw-alias-label-primary);font-weight:600}.dul_tab:hover{color:var(--dsw-alias-label-primary)}.dul_panel{display:flex;flex-direction:column;gap:8px;min-width:0}.dul_panel[hidden]{display:none}.dul_reference{font-size:11.5px;line-height:18px;color:var(--dsw-alias-label-secondary);text-underline-offset:3px;white-space:nowrap}.dul_reference:hover{color:var(--dsw-alias-label-primary)}.dul_resultStatus{flex-wrap:wrap;gap:8px}.dul_pager .dul_select{height:26px;min-width:65px}.dul_pageNumber{display:inline-flex;align-items:center;gap:5px;font-variant-numeric:tabular-nums}.dul_pageNumber .dul_select{min-width:47px}.dul_pageResults{font-variant-numeric:tabular-nums}@media(pointer:coarse){.dul_tab{min-height:38px}.dul_pager .dul_select{min-height:36px}}",
+      ".dul_titles{flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:6px 10px}.dul_mainContent,.dul_panel{display:flex;flex-direction:column;gap:10px;min-width:0}.dul_mainContent[hidden]{display:none}.dul_reference{font-size:11.5px;line-height:18px;color:var(--dsw-alias-label-secondary);text-underline-offset:3px;white-space:nowrap}.dul_reference:hover{color:var(--dsw-alias-label-primary)}.dul_resultStatus{flex-wrap:wrap;gap:8px}.dul_pager .dul_select{height:26px;min-width:65px}.dul_pageNumber{display:inline-flex;align-items:center;gap:5px;font-variant-numeric:tabular-nums}.dul_pageNumber .dul_select{min-width:47px}.dul_pageResults{font-variant-numeric:tabular-nums}@media(pointer:coarse){.dul_pager .dul_select{min-height:36px}}",
     ].join("");
 
     function injectStyle() {
@@ -1118,7 +1118,7 @@ window.__ModuleLoader__.load({
         h("header", { className: "dul_detailHead" },
           h("button", { type: "button", className: "dul_btn dul_detailBack", onClick: props.onClose },
             h("svg", { width: 14, height: 14, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, "aria-hidden": true }, h("path", { d: "M14 6l-6 6 6 6M8 12h12", strokeLinecap: "round", strokeLinejoin: "round" })), t("detail.back")),
-          h("div", { className: "dul_detailCrumb" }, h("span", null, t("nav.overview")), h("span", { "aria-hidden": true }, "/"), h("h2", null, title))),
+          h("div", { className: "dul_detailCrumb" }, h("span", null, t("page.title")), h("span", { "aria-hidden": true }, "/"), h("h2", null, title))),
         h("div", { className: "dul_detailBody" }, selection.kind === "skills"
           ? h(SkillList, { t: t, skills: props.skills, onSelect: props.onSkill })
           : h(React.Fragment, null,
@@ -1399,7 +1399,6 @@ window.__ModuleLoader__.load({
       var [detail, setDetail] = useState(null);
       var [sort, setSort] = usePreference("sort", "recent", ["recent", "tokens", "cost", "turns"]);
       var [view, setView] = usePreference("view", "list", ["list", "cards"]);
-      var [tab, setTab] = usePreference("tab", "overview", ["overview", "sessions"]);
       var [perPage, setPerPage] = usePreference("page-size", "auto", ["auto", "12", "24", "48"]);
       var [page, setPage] = useState(0);
       var [hoverSlice, setHoverSlice] = useState(null);
@@ -1408,6 +1407,7 @@ window.__ModuleLoader__.load({
       var pageSize = perPage === "auto" ? (dense ? 25 : 9) : Number(perPage);
       var pageRoot = useRef(null);
       var detailReturn = useRef(null);
+      var lastPagination = useRef(null);
       var requestSerial = useRef(0);
       var mounted = useRef(true);
       var operation = useRef(false);
@@ -1441,7 +1441,13 @@ window.__ModuleLoader__.load({
       }, []);
 
       useEffect(function () { setPage(0); }, [scope, query, range, depth, sort, view, perPage]);
-      useEffect(function () { if (pageRoot.current) pageRoot.current.scrollTop = 0; }, [tab, page, pageSize]);
+      useEffect(function () {
+        var previous = lastPagination.current;
+        lastPagination.current = { page: page, size: pageSize };
+        if (!previous || (previous.page === page && previous.size === pageSize) || !pageRoot.current) return;
+        var list = pageRoot.current.querySelector(".dul_sessions");
+        if (list) pageRoot.current.scrollTop = Math.max(0, pageRoot.current.scrollTop + list.getBoundingClientRect().top - pageRoot.current.getBoundingClientRect().top - 8);
+      }, [page, pageSize]);
 
       useEffect(function () {
         if (!pageRoot.current) return;
@@ -1673,6 +1679,7 @@ window.__ModuleLoader__.load({
           "div",
           { className: "dul_titles" },
           h("h1", { className: "dul_title" }, t("page.title")),
+          h("a", { className: "dul_reference", href: REFERENCE_URL, target: "_blank", rel: "noopener noreferrer", title: "bowenliang123/dsh-context" }, t("source.reference")),
         ),
         h(
           "div",
@@ -1786,30 +1793,12 @@ window.__ModuleLoader__.load({
         busy: busy, rate: data.usdToCny, onAsk: ask, onOpen: props.onOpenSession,
         onUnarchive: function (id) { act(id, "/unarchive"); },
       };
-      function selectTab(value) { detailReturn.current = null; setDetail(null); setTab(value); }
-      function tabKey(event, value) {
-        var target;
-        if (event.key === "ArrowRight" || event.key === "ArrowLeft") target = value === "overview" ? "sessions" : "overview";
-        else if (event.key === "Home") target = "overview";
-        else if (event.key === "End") target = "sessions";
-        else return;
-        event.preventDefault();
-        selectTab(target);
-        var next = event.currentTarget.parentElement.querySelector('[data-ledger-tab="' + target + '"]');
-        if (next) next.focus();
-      }
       return h("div", { ref: pageRoot, className: "dul_page" + (dense ? " dul_dense" : "") },
         h("div", { className: "dul_inner" }, head,
           error ? h("p", { className: "dul_error dul_refreshError", role: "alert" }, t("error.load") + " " + error) : null,
-          h("div", { className: "dul_navigation" },
-            h("div", { className: "dul_tabs", role: "tablist", "aria-label": t("nav.label") }, ["overview", "sessions"].map(function (value) {
-              return h("button", { key: value, id: NS + "-tab-" + value, type: "button", role: "tab", className: "dul_tab", "data-ledger-tab": value, "aria-selected": tab === value, "aria-controls": NS + "-panel-" + value, tabIndex: tab === value ? 0 : -1,
-                onClick: function () { selectTab(value); }, onKeyDown: function (event) { tabKey(event, value); } }, t("nav." + value));
-            })),
-            h("a", { className: "dul_reference", href: REFERENCE_URL, target: "_blank", rel: "noopener noreferrer", title: "bowenliang123/dsh-context" }, t("source.reference"))),
-          h("div", { className: "dul_panel", role: "tabpanel", id: NS + "-panel-overview", "aria-labelledby": NS + "-tab-overview", hidden: tab !== "overview" },
           detail !== null ? h(DetailPanel, { selection: detail, t: t, sessions: data.sessions || [], skills: derived.skills, range: range, rate: data.usdToCny, onClose: function () { setDetail(null); }, onSkill: selectSkill, onOpen: props.onOpenSession }) : null,
-          h("div", { className: "dul_overviewContent", hidden: detail !== null },
+          h("div", { className: "dul_mainContent", hidden: detail !== null },
+          h("div", { className: "dul_overviewContent" },
           h("section", { className: "dul_top", "aria-label": t("overview.title") },
             h(Kpi, { label: t("kpi.sessions"), value: String(derived.total.sessions), hint: t("kpi.sessionsBreak", { a: derived.byState.active.sessions, b: derived.byState.archived.sessions, d: derived.byState.deleted.sessions }) }),
             h(Kpi, { label: t("kpi.tokens"), value: formatTokens(derived.total.tokens, t), hint: t("kpi.tokenBreak", { session: formatTokens(derived.rootTotals.tokens, t), sub: formatTokens(derived.subagents.tokens, t), turns: derived.total.turns }) }),
@@ -1825,8 +1814,8 @@ window.__ModuleLoader__.load({
             h("section", { className: "dul_card dul_skillCard", "aria-label": t("skill.title") },
               h("div", { className: "dul_cardHead" }, h("span", { className: "dul_cardTitle" }, t("skill.title")),
                 derived.skills.length > 6 ? h("button", { type: "button", className: "dul_link", onClick: function () { showDetail({ kind: "skills" }); } }, t("detail.allSkills", { n: derived.skills.length })) : null),
-              h(SkillList, { skills: derived.skills.slice(0, 6), t: t, onSelect: selectSkill }))))),
-          h("div", { className: "dul_panel", role: "tabpanel", id: NS + "-panel-sessions", "aria-labelledby": NS + "-tab-sessions", hidden: tab !== "sessions" },
+              h(SkillList, { skills: derived.skills.slice(0, 6), t: t, onSelect: selectSkill })))),
+          h("div", { className: "dul_panel" },
           h("section", { className: "dul_card dul_sessions", "aria-label": t("sessions.title"), "aria-busy": busy || loading },
             h("div", { className: "dul_sessionsHead" }, h("h2", { className: "dul_sessionsTitle" }, t("sessions.title")),
               h("div", { className: "dul_sessionTools" },
@@ -1848,7 +1837,7 @@ window.__ModuleLoader__.load({
                 h("button", { type: "button", className: "dul_btn", disabled: currentPage === 0, onClick: function () { setPage(currentPage - 1); } }, t("page.previous")),
                 h("span", { className: "dul_pageNumber" }, h("select", { className: "dul_select", "aria-label": t("page.jump"), value: String(currentPage), onChange: function (event) { setPage(Number(event.target.value)); } },
                   Array.from({ length: pages }, function (_, index) { return h("option", { key: index, value: String(index) }, String(index + 1)); })), " / " + pages),
-                h("button", { type: "button", className: "dul_btn", disabled: currentPage + 1 === pages, onClick: function () { setPage(currentPage + 1); } }, t("page.next"))))))),
+                h("button", { type: "button", className: "dul_btn", disabled: currentPage + 1 === pages, onClick: function () { setPage(currentPage + 1); } }, t("page.next")))))))),
         confirm !== null ? h(ConfirmDialog, { t: t, busy: busy, error: dialogError, danger: confirm.kind === "delete", title: t("dialog." + confirm.kind + ".title"), message: t("dialog." + confirm.kind + ".body", { name: confirm.name }), confirmLabel: t("dialog." + confirm.kind + ".confirm"), onConfirm: confirmRun, onCancel: function () { setConfirm(null); setDialogError(""); } }) : null);
     }
 
@@ -1857,9 +1846,6 @@ window.__ModuleLoader__.load({
     // ---------------------------------------------------------------------
 
     var zh = {
-      "nav.label": "账本页面",
-      "nav.overview": "概览",
-      "nav.sessions": "会话明细",
       "source.reference": "参考 dsh-context",
       "page.navigation": "会话分页",
       "page.size": "每页数量",
@@ -1939,7 +1925,7 @@ window.__ModuleLoader__.load({
       "dur.unit.m": "分钟",
       "dur.unit.s": "秒",
       "detail.total": "合计",
-      "detail.back": "返回概览",
+      "detail.back": "返回账本",
       "kpi.sessionsHint": "{n} 个会话",
       "kpi.turnsHint": "共 {n} 轮",
       "kpi.totalHintSub": "共 {n} 轮 · 子代理另 {sub}",
@@ -2054,9 +2040,6 @@ window.__ModuleLoader__.load({
     };
 
     var en = {
-      "nav.label": "Ledger pages",
-      "nav.overview": "Overview",
-      "nav.sessions": "Sessions",
       "source.reference": "Inspired by dsh-context",
       "page.navigation": "Session pagination",
       "page.size": "Items per page",
@@ -2136,7 +2119,7 @@ window.__ModuleLoader__.load({
       "dur.unit.m": "min",
       "dur.unit.s": "sec",
       "detail.total": "Total",
-      "detail.back": "Back to overview",
+      "detail.back": "Back to ledger",
       "kpi.sessionsHint": "{n} sessions",
       "kpi.turnsHint": "{n} turns",
       "kpi.totalHintSub": "{n} turns · subagents {sub}",

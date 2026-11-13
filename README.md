@@ -13,12 +13,17 @@ DeepSeek Harness（DSH）用量账本插件：跨会话保留 Token 用量，支
 本项目在这一参考基础上，扩展了独立的持久用量账本、会话删除后保留统计、
 归档／删除管理、工作区路径回填，以及本项目的紧凑视图和页内详情。
 
-界面分为 **概览** 与 **会话明细** 两个独立页签。会话页保留筛选、搜索和排序，
-拥有独立的每页数量和跳页控制；卡片自动每页 9 个，列表自动每页 25 条，
-也可手动选择每页 12、24 或 48 条。切换页签会保留筛选和页码。
+统计概览与会话明细显示在 **同一个页面**：上方查看统计，下方查看会话。
+只有会话列表分页，保留筛选、搜索和排序，以及每页数量和跳页控制；卡片自动每页 9 个，
+列表自动每页 25 条，也可选择每页 12、24 或 48 条。查看详情后返回会保留筛选、页码和滚动位置。
 
 只有标题、路径或模型信息的空会话暂不显示，也不计入会话数量；产生实际对话或用量后
 自动显示。未命名但已有实际活动的会话仍会保留，历史账本记录和已发生的用量不会删除。
+
+## 0.1.3 更新
+
+- 恢复统计和会话列表共用单页，移除“概览／会话明细”页签，仅对会话列表分页。
+- 来源署名移到页面标题旁；翻页定位到列表，查看详情后返回保留原位置。
 
 ## 0.1.2 更新
 
@@ -60,7 +65,7 @@ DeepSeek Harness（DSH）用量账本插件：跨会话保留 Token 用量，支
 需要固定版本时，使用：
 
 ```text
-https://github.com/xiyu-ljy/dsplugin/releases/download/v0.1.2/dsh-usage-ledger-0.1.2.tgz
+https://github.com/xiyu-ljy/dsplugin/releases/download/v0.1.3/dsh-usage-ledger-0.1.3.tgz
 ```
 
 这是包含前后端 JavaScript 的安装包，无需自行编译，也没有安装时运行的构建脚本。
@@ -75,7 +80,7 @@ dsh plugin --profile <profile> add https://github.com/xiyu-ljy/dsplugin/releases
 
 命令执行完成后重启该配置，再刷新网页。
 
-仓库根目录本身也是可安装的插件目录，可用 `github:xiyu-ljy/dsplugin#v0.1.2` 安装固定版本。
+仓库根目录本身也是可安装的插件目录，可用 `github:xiyu-ljy/dsplugin#v0.1.3` 安装固定版本。
 仅输入 `dsh-usage-ledger` 会去 npm 查找；本次分发使用 GitHub Release 下载链接。
 
 ---
@@ -89,7 +94,7 @@ sessions itself — snapshotting their usage first.
 From a packed tarball or an unpacked folder:
 
 ```sh
-dsh plugin --profile <profile> add ./dsh-usage-ledger-0.1.2.tgz
+dsh plugin --profile <profile> add ./dsh-usage-ledger-0.1.3.tgz
 # or
 dsh plugin --profile <profile> add ./dsh-usage-ledger
 ```
