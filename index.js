@@ -643,6 +643,8 @@ async function backfill(state) {
     existing.reasoningMs = Math.max(numberOr(existing.reasoningMs), numberOr(facts.reasoningMs));
     existing.textMs = Math.max(numberOr(existing.textMs), numberOr(facts.textMs));
     existing.toolArgMs = Math.max(numberOr(existing.toolArgMs), numberOr(facts.toolArgMs));
+    existing.turns = Math.max(numberOr(existing.turns), facts.turns);
+    existing.steps = Math.max(numberOr(existing.steps), facts.steps);
     // The cache is a fold of every committed event, so it can only be ahead:
     // a reload gap (events emitted while this plugin was off) shows up here as
     // the cache billing more than the ledger. Adopt it instead of drifting.
@@ -652,8 +654,6 @@ async function backfill(state) {
       existing.last = facts.last;
       existing.cost = Math.max(numberOr(existing.cost), numberOr(facts.cost));
       existing.foldedThroughSeq = Math.max(existing.foldedThroughSeq, facts.foldedThroughSeq);
-      existing.steps = Math.max(existing.steps, facts.steps);
-      existing.turns = Math.max(existing.turns, facts.turns);
     }
     // Records seeded before lineage was tracked read it once, then keep it.
     if (existing.parent === undefined) {
@@ -1489,6 +1489,36 @@ function trimDays(rec, keepDays) {
   return days;
 }
 
+/** Metadata alone is a draft; a title or model selection is not activity. */
+function hasRecordedActivity(rec) {
+  return (
+    numberOr(rec.turns) > 0 ||
+    numberOr(rec.steps) > 0 ||
+    numberOr(rec.modelCalls) > 0 ||
+    numberOr(rec.toolCalls) > 0 ||
+    billedOf(rec.totals) > 0 ||
+    numberOr(rec.cost) > 0 ||
+    Object.values(rec.days ?? {}).some((day) => numberOr(day.tokens) > 0 || numberOr(day.requests) > 0)
+  );
+}
+
+function recordsWithActivity(state, includeSubagents) {
+  const records = Object.values(state.sessions).filter((rec) => includeSubagents || rec.subagent === "");
+  const byId = new Map(records.map((rec) => [normalizeId(rec.id), rec]));
+  const visible = new Set();
+  for (const rec of records) {
+    if (!hasRecordedActivity(rec)) continue;
+    // Keep ancestors of real subagent activity so grouping and navigation still
+    // point to the original parent, even when it has no usage of its own.
+    let current = rec;
+    while (current !== undefined && !visible.has(current)) {
+      visible.add(current);
+      current = byId.get(normalizeId(current.parent ?? ""));
+    }
+  }
+  return records.filter((rec) => visible.has(rec));
+}
+
 function snapshot(state, archivedSet) {
   const cfg = runtime.config;
   const archived = archivedSet ?? new Set();
@@ -1501,8 +1531,7 @@ function snapshot(state, archivedSet) {
     total: { sessions: 0, totals: emptyBuckets() },
   };
   const sessions = [];
-  for (const rec of Object.values(state.sessions)) {
-    if (!cfg.includeSubagents && rec.subagent !== "") continue;
+  for (const rec of recordsWithActivity(state, cfg.includeSubagents)) {
     const stateOf =
       rec.status === "deleted"
         ? "deleted"

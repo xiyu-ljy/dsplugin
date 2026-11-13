@@ -9,6 +9,10 @@
 //
 // States (exclusive): active · archived · deleted. "Current" = active + archived.
 // Subagent sessions are folded into the top-level session that started them.
+// UI reference: Context Insights from dsh-context by bowenliang123:
+// https://github.com/bowenliang123/dsh-context
+// This project extends that reference with a durable usage ledger, retained
+// usage after deletion, session management, and its own navigation/drilldowns.
 
 window.__ModuleLoader__.load({
   id: "dsh-usage-ledger",
@@ -24,6 +28,7 @@ window.__ModuleLoader__.load({
     var BASE = "/api/usage-ledger";
     var HEADER = "x-dsh-usage-ledger";
     var STYLE_ID = "dsh-usage-ledger-style";
+    var REFERENCE_URL = "https://github.com/bowenliang123/dsh-context";
 
     // Categorical data-viz palette. Chart colours are artwork, not chrome: the
     // theme brand accent collapses to a near-neutral in this theme, and a chart
@@ -100,8 +105,8 @@ window.__ModuleLoader__.load({
       ".dul_donutRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}",
       ".dul_donut{flex:0 0 auto;position:relative}",
       ".dul_donutCenter{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;pointer-events:none}",
-      ".dul_donutValue{font-size:13px;line-height:17px;font-weight:600;font-variant-numeric:tabular-nums}",
-      ".dul_donutLabel{font-size:9px;line-height:13px;color:var(--dsw-alias-label-secondary)}",
+      ".dul_donutValue{font-size:13px;line-height:17px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}",
+      ".dul_donutLabel{font-size:9px;line-height:13px;color:var(--dsw-alias-label-secondary);white-space:nowrap}",
       ".dul_legend{flex:1;min-width:150px;display:flex;flex-direction:column;gap:4px}",
       ".dul_legendRow{display:flex;align-items:center;gap:7px;font-size:11.5px;line-height:17px}",
       ".dul_dot{width:8px;height:8px;border-radius:2px;flex:0 0 auto}",
@@ -198,12 +203,12 @@ window.__ModuleLoader__.load({
       ".dul_dense .dul_heatRow{grid-template-columns:18px repeat(8,18px);gap:3px}",
       ".dul_page{padding:12px 16px 24px}.dul_inner{max-width:1440px;gap:8px}.dul_titles{min-width:130px}.dul_head{align-items:center}.dul_tools{gap:6px}.dul_btn,.dul_segBtn{min-height:28px}.dul_kpiHint{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px}",
       ".dul_top{grid-template-columns:repeat(6,minmax(0,1fr));gap:0;border:1px solid var(--dsw-alias-border-l1);border-radius:9px;overflow:hidden;background:var(--dsw-alias-bg-layer-1)}.dul_kpi{border:0;border-radius:0;background:transparent;align-items:flex-start;text-align:left;border-right:1px solid var(--dsw-alias-border-l1);padding:8px 12px}.dul_kpi:last-child{border-right:0}.dul_dense .dul_kpi{padding:8px 11px}",
-      ".dul_analysis{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:8px;align-items:stretch}.dul_analysis .dul_card{padding:9px 11px;gap:6px}.dul_analysis .dul_chartCard{grid-column:auto;grid-row:auto}.dul_analysis .dul_plot,.dul_analysis .dul_yaxisCol{height:92px;font-size:11px;line-height:12px}.dul_analysis .dul_dayValue{display:none}.dul_analysis .dul_donutRow{gap:9px;flex-wrap:nowrap;flex:1}.dul_analysis .dul_clegend{grid-template-columns:minmax(0,1fr);gap:1px}.dul_analysis .dul_clegendItem{padding:0 3px;margin:0 -3px}.dul_analysis .dul_clegendName,.dul_analysis .dul_clegendPct{font-size:11px;line-height:17px}.dul_analysis .dul_clegendValue{display:none}.dul_analysis .dul_cardHint{font-size:11px}.dul_analysis .dul_chartLegend{gap:12px;flex-wrap:wrap}",
+      ".dul_analysis{display:grid;grid-template-columns:minmax(0,1.2fr) repeat(2,minmax(0,1fr));gap:8px;align-items:stretch}.dul_analysis .dul_card{padding:9px 11px;gap:6px}.dul_analysis>.dul_chartCard{grid-column:1;grid-row:1 / span 2}.dul_analysis .dul_plot,.dul_analysis .dul_yaxisCol{height:92px;font-size:11px;line-height:12px}.dul_analysis .dul_dayValue{display:none}.dul_analysis .dul_donutRow{gap:9px;flex-wrap:nowrap;flex:1}.dul_analysis .dul_clegend{grid-template-columns:minmax(0,1fr);gap:1px}.dul_analysis .dul_clegendItem{padding:0 3px;margin:0 -3px}.dul_analysis .dul_clegendName,.dul_analysis .dul_clegendPct{font-size:11px;line-height:17px}.dul_analysis .dul_clegendValue{display:none}.dul_analysis .dul_cardHint{font-size:11px}.dul_analysis .dul_chartLegend{gap:12px;flex-wrap:wrap}.dul_analysis>.dul_chartCard .dul_plotRow{flex:1;min-height:92px}.dul_analysis>.dul_chartCard .dul_plot,.dul_analysis>.dul_chartCard .dul_yaxisCol{height:auto;min-height:92px}.dul_analysis>.dul_heatCard{grid-column:2;grid-row:2}.dul_analysis>.dul_skillCard{grid-column:3;grid-row:2}.dul_analysis .dul_heat{gap:2px}.dul_analysis .dul_heatRow{grid-template-columns:18px repeat(8,14px);gap:2px}.dul_analysis .dul_heatMonth{overflow:visible}.dul_analysis .dul_heatLegend{margin-top:auto}.dul_analysis .dul_skillList{gap:1px}.dul_analysis .dul_skillRow{padding:2px 0;gap:5px}.dul_analysis .dul_skillWhen{min-width:44px}",
       "button.dul_dayGroup{appearance:none;padding:0;border:0;background:transparent;color:inherit;cursor:pointer}button.dul_cell{appearance:none;padding:0;border:0;cursor:pointer}button.dul_skillRow{appearance:none;width:100%;border:0;background:transparent;color:inherit;text-align:left;font:inherit;padding:4px;border-radius:5px;cursor:pointer}button.dul_skillRow:hover{background:var(--dsw-alias-bg-layer-2)}button.dul_clegendItem{appearance:none;width:100%;border:0;background:transparent;text-align:left;color:inherit;font:inherit;cursor:pointer}button.dul_clegendItem:hover{background:var(--dsw-alias-bg-layer-2)}.dul_donut circle[data-selectable]{cursor:pointer}.dul_dayGroup:focus-visible{outline-offset:3px}",
-      ".dul_more{border:1px solid var(--dsw-alias-border-l1);border-radius:8px;background:var(--dsw-alias-bg-layer-1)}.dul_more>summary{padding:6px 10px;font-size:12px;cursor:pointer;color:var(--dsw-alias-label-secondary)}.dul_more[open]>summary{border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_moreBody{display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);gap:8px;padding:8px}.dul_moreBody>.dul_card{border:0;padding:4px 6px;background:transparent}.dul_moreBody .dul_heatRow{grid-template-columns:20px repeat(8,minmax(12px,22px))}.dul_moreBody .dul_skillList{gap:0}",
       ".dul_sessions{padding:0;gap:0}.dul_sessionsHead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:9px 11px 0}.dul_sessionsTitle{margin:0;font-size:13px;line-height:20px;font-weight:600}.dul_sessionTools{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.dul_sessions .dul_filters{padding:8px 11px;gap:6px}.dul_search{height:28px;min-width:150px}.dul_select{max-width:100%;height:28px;border:1px solid var(--dsw-alias-border-l2);border-radius:6px;background:var(--dsw-alias-bg-layer-1);color:var(--dsw-alias-label-primary);font:inherit;font-size:11.5px;padding:0 6px}.dul_tableWrap{overflow-x:auto}.dul_table{table-layout:fixed;min-width:640px}.dul_table th{padding:6px 10px;background:var(--dsw-alias-bg-layer-1)}.dul_table td{padding:7px 10px}.dul_table th:first-child{width:38%}.dul_table th:last-child{width:68px}.dul_table .dul_num{text-align:right}.dul_table .dul_nameText,.dul_table .dul_path{max-width:none}.dul_sessionOpen{appearance:none;display:block;max-width:100%;padding:0;border:0;background:transparent;color:var(--dsw-alias-label-primary);font:inherit;font-weight:600;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}.dul_sessionOpen:hover{text-decoration:underline}.dul_sessionMeta{display:flex;gap:6px;align-items:center;min-width:0;font-size:11px;color:var(--dsw-alias-label-secondary)}.dul_sessionMeta>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dul_actionSelect{width:68px;padding:0 3px}.dul_sessions .dul_cards{padding:0 11px 10px}.dul_sessions .dul_forgotten{margin:0;padding:8px 11px}.dul_resultStatus{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:7px 11px;font-size:11px;color:var(--dsw-alias-label-secondary)}.dul_notice{margin:0;padding:6px 11px;font-size:12px}.dul_noticeError{color:var(--dsw-alias-state-error-primary)}.dul_noticeSuccess{color:var(--dsw-alias-state-success-primary)}.dul_pager{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.dul_refreshError{padding:8px 10px;border:1px solid var(--dsw-alias-state-error-primary);border-radius:7px}",
-      ".dul_overlayDrawer{justify-content:flex-end;align-items:stretch}.dul_drawer{box-sizing:border-box;display:flex;flex-direction:column;width:540px;max-width:100vw;height:100%;background:var(--dsw-alias-bg-overlay);border-left:1px solid var(--dsw-alias-border-l2);box-shadow:-12px 0 35px rgba(0,0,0,.2);color:var(--dsw-alias-label-primary);font-size:12px;line-height:18px}.dul_drawerHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_drawerHead h2{margin:0;font-size:14px;line-height:21px;font-weight:600;overflow-wrap:anywhere}.dul_drawerBody{padding:12px 16px;overflow:auto;flex:1}.dul_detailStats{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:8px}.dul_detailValue{font-size:24px;line-height:32px;font-weight:600;font-variant-numeric:tabular-nums}.dul_detailHint{color:var(--dsw-alias-label-secondary);font-size:11px;margin:0 0 12px}.dul_detailRow{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_detailRow:last-child{border-bottom:0}.dul_detailMetric{text-align:right;font-variant-numeric:tabular-nums}.dul_detailName{overflow-wrap:anywhere}.dul_detailName>.dul_badge{margin-top:4px}.dul_detailList{margin:0;padding:0;list-style:none}.dul_detailRow .dul_sessionMeta{margin-top:3px}.dul_dialog{color:var(--dsw-alias-label-primary)}.dul_dialog .dul_error{margin:3px 0}.dul_listHint{font-size:11px;color:var(--dsw-alias-label-secondary)}",
-      "@container (max-width:820px){.dul_top{grid-template-columns:repeat(3,minmax(0,1fr))}.dul_kpi:nth-child(3){border-right:0}.dul_kpi:nth-child(-n+3){border-bottom:1px solid var(--dsw-alias-border-l1)}}@container (max-width:820px){.dul_analysis{grid-template-columns:repeat(2,minmax(0,1fr))}.dul_analysis>.dul_chartCard{grid-column:1/-1}.dul_analysis .dul_plot,.dul_analysis .dul_yaxisCol{height:72px}.dul_top{grid-template-columns:repeat(3,minmax(0,1fr))}.dul_table th:first-child{width:32%}}@container (max-width:540px){.dul_analysis,.dul_moreBody{grid-template-columns:minmax(0,1fr)}.dul_analysis>.dul_chartCard{grid-column:auto}.dul_top{grid-template-columns:repeat(2,minmax(0,1fr))}.dul_kpi:nth-child(3){border-right:1px solid var(--dsw-alias-border-l1)}.dul_kpi:nth-child(even){border-right:0}.dul_kpi:nth-child(-n+4){border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_head{align-items:flex-start}.dul_tools{width:100%}.dul_search{flex-basis:100%}.dul_sessionTools{width:100%;justify-content:space-between}}@media(pointer:coarse){.dul_btn,.dul_segBtn,.dul_select{min-height:36px}.dul_search{height:36px;font-size:16px}.dul_heatRow{gap:7px}.dul_skillRow{min-height:36px}}@media(prefers-reduced-motion:reduce){.dul_bar{transition:none}}",
+      ".dul_overviewContent{display:flex;flex-direction:column;gap:8px;min-width:0}.dul_overviewContent[hidden]{display:none}.dul_detailPanel{min-width:0;border:1px solid var(--dsw-alias-border-l1);border-radius:9px;background:var(--dsw-alias-bg-layer-1);color:var(--dsw-alias-label-primary);font-size:12px;line-height:18px}.dul_detailHead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_detailBack{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto}.dul_detailCrumb{display:flex;align-items:center;gap:9px;min-width:0;color:var(--dsw-alias-label-secondary)}.dul_detailCrumb h2{margin:0;font-size:13px;line-height:20px;font-weight:600;color:var(--dsw-alias-label-primary);overflow-wrap:anywhere}.dul_detailBody{padding:14px}.dul_detailStats{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 14px;border:1px solid var(--dsw-alias-border-l1);border-radius:8px;background:var(--dsw-alias-bg-base)}.dul_detailStat{display:flex;flex-direction:column;gap:3px}.dul_detailStatLabel{font-size:11px;color:var(--dsw-alias-label-secondary)}.dul_detailValue{font-size:24px;line-height:30px;font-weight:600;font-variant-numeric:tabular-nums}.dul_detailSecondary{font-size:16px;line-height:24px;font-weight:600;font-variant-numeric:tabular-nums}.dul_detailHint{color:var(--dsw-alias-label-secondary);font-size:11px;margin:8px 0 14px}.dul_detailListHead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:6px;color:var(--dsw-alias-label-secondary);font-size:11px;border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_detailRow{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;padding:10px 0;border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_detailRow:last-child{border-bottom:0}.dul_detailMetric{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.dul_detailName{min-width:0}.dul_detailTitle{display:flex;align-items:center;gap:8px;min-width:0}.dul_detailTitle>.dul_badge{flex:0 0 auto;font-size:10px;line-height:16px;padding:0 5px}.dul_detailSessionName{display:block;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;line-height:18px;font-weight:600}.dul_detailList{margin:0;padding:0;list-style:none}.dul_detailRow .dul_sessionMeta{margin-top:3px}.dul_dialog{color:var(--dsw-alias-label-primary);background:var(--dsw-alias-bg-layer-1)}.dul_dialog .dul_error{margin:3px 0}.dul_listHint{font-size:11px;color:var(--dsw-alias-label-secondary)}@container(max-width:540px){.dul_detailBody{padding:10px}.dul_detailHead{padding:9px 10px;gap:8px}.dul_detailTitle{flex-wrap:wrap;gap:3px 6px}.dul_detailRow{gap:10px}.dul_detailValue{font-size:21px;line-height:28px}}",
+      "@container (max-width:820px){.dul_top{grid-template-columns:repeat(3,minmax(0,1fr))}.dul_kpi:nth-child(3){border-right:0}.dul_kpi:nth-child(-n+3){border-bottom:1px solid var(--dsw-alias-border-l1)}}@container (max-width:820px){.dul_analysis{grid-template-columns:repeat(2,minmax(0,1fr))}.dul_analysis>.dul_chartCard{grid-column:1/-1;grid-row:auto}.dul_analysis>.dul_heatCard,.dul_analysis>.dul_skillCard{grid-column:auto;grid-row:auto}.dul_analysis>.dul_chartCard .dul_plotRow{flex:0 0 104px}.dul_analysis>.dul_chartCard .dul_plot,.dul_analysis>.dul_chartCard .dul_yaxisCol{height:104px;min-height:104px}.dul_analysis .dul_plot,.dul_analysis .dul_yaxisCol{height:72px}.dul_top{grid-template-columns:repeat(3,minmax(0,1fr))}.dul_table th:first-child{width:32%}}@container (max-width:540px){.dul_analysis{grid-template-columns:minmax(0,1fr)}.dul_analysis>.dul_chartCard{grid-column:auto}.dul_top{grid-template-columns:repeat(2,minmax(0,1fr))}.dul_kpi:nth-child(3){border-right:1px solid var(--dsw-alias-border-l1)}.dul_kpi:nth-child(even){border-right:0}.dul_kpi:nth-child(-n+4){border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_head{align-items:flex-start}.dul_tools{width:100%}.dul_search{flex-basis:100%}.dul_sessionTools{width:100%;justify-content:space-between}}@media(pointer:coarse){.dul_btn,.dul_segBtn,.dul_select{min-height:36px}.dul_search{height:36px;font-size:16px}.dul_analysis .dul_heatRow{grid-template-columns:18px repeat(8,24px);gap:4px}.dul_skillRow{min-height:36px}}@media(prefers-reduced-motion:reduce){.dul_bar{transition:none}}",
+      ".dul_navigation{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:0 0 5px;background:var(--dsw-alias-bg-base);border-bottom:1px solid var(--dsw-alias-border-l1)}.dul_tabs{display:flex;align-items:center;gap:4px}.dul_tab{appearance:none;border:0;border-radius:6px;background:transparent;color:var(--dsw-alias-label-secondary);font:inherit;font-size:12px;line-height:18px;padding:6px 12px;cursor:pointer}.dul_tab[aria-selected=true]{background:var(--dsw-alias-bg-layer-2);color:var(--dsw-alias-label-primary);font-weight:600}.dul_tab:hover{color:var(--dsw-alias-label-primary)}.dul_panel{display:flex;flex-direction:column;gap:8px;min-width:0}.dul_panel[hidden]{display:none}.dul_reference{font-size:11.5px;line-height:18px;color:var(--dsw-alias-label-secondary);text-underline-offset:3px;white-space:nowrap}.dul_reference:hover{color:var(--dsw-alias-label-primary)}.dul_resultStatus{flex-wrap:wrap;gap:8px}.dul_pager .dul_select{height:26px;min-width:65px}.dul_pageNumber{display:inline-flex;align-items:center;gap:5px;font-variant-numeric:tabular-nums}.dul_pageNumber .dul_select{min-width:47px}.dul_pageResults{font-variant-numeric:tabular-nums}@media(pointer:coarse){.dul_tab{min-height:38px}.dul_pager .dul_select{min-height:36px}}",
     ].join("");
 
     function injectStyle() {
@@ -300,6 +305,14 @@ window.__ModuleLoader__.load({
       if (hours > 0) return t("dur.hm", { h: hours, m: minutes });
       if (minutes > 0) return t("dur.ms", { m: minutes, s: seconds });
       return t("dur.s", { s: seconds });
+    }
+
+    /** The ring has room for one short number, with its unit on a second line. */
+    function durationCenter(ms, t) {
+      var seconds = Math.max(0, Math.round((typeof ms === "number" && isFinite(ms) ? ms : 0) / 1000));
+      var unit = seconds >= 3600 ? "h" : seconds >= 60 ? "m" : "s";
+      var value = seconds / (unit === "h" ? 3600 : unit === "m" ? 60 : 1);
+      return { value: value >= 1000 ? formatMetric(value) : value.toFixed(value >= 100 ? 0 : 1).replace(/\.0$/, ""), unit: t("dur.unit." + unit) };
     }
 
     function formatWhen(ms, t) {
@@ -569,7 +582,7 @@ window.__ModuleLoader__.load({
       }
       return h(
         "div",
-        { className: "dul_donut", style: { width: size + "px", height: size + "px" } },
+        { className: "dul_donut", title: props.centerTitle, style: { width: size + "px", height: size + "px" } },
         h(
           "svg",
           { width: size, height: size, "aria-hidden": true },
@@ -881,7 +894,7 @@ window.__ModuleLoader__.load({
 
       return h(
         "div",
-        { className: "dul_card" },
+        { className: "dul_card" + (props.cardClass ? " " + props.cardClass : "") },
         h(
           "div",
           { className: "dul_cardHead" },
@@ -1027,9 +1040,9 @@ window.__ModuleLoader__.load({
         };
       }, []);
       return h("div", {
-        className: "dul_overlay" + (props.drawer ? " dul_overlayDrawer" : ""),
+        className: "dul_overlay",
         onClick: function (event) { if (event.target === event.currentTarget && !props.busy) props.onClose(); },
-      }, h("section", { ref: root, className: props.drawer ? "dul_drawer" : "dul_dialog", role: "dialog", "aria-modal": "true", "aria-label": props.title, "aria-busy": props.busy || undefined }, props.children));
+      }, h("section", { ref: root, className: "dul_dialog", role: "dialog", "aria-modal": "true", "aria-label": props.title, "aria-busy": props.busy || undefined }, props.children));
     }
 
     function SessionActions(props) {
@@ -1077,30 +1090,51 @@ window.__ModuleLoader__.load({
         }))));
     }
 
-    function DetailDrawer(props) {
+    /** Read-only drilldowns stay inside the plugin page, without a modal layer. */
+    function DetailPanel(props) {
       var selection = props.selection;
       var t = props.t;
+      var panel = useRef(null);
+      var latest = useRef(props);
+      latest.current = props;
+      useEffect(function () {
+        var back = panel.current && panel.current.querySelector(".dul_detailBack");
+        if (back) back.focus();
+        function onKey(event) {
+          if (event.key === "Escape") { event.preventDefault(); latest.current.onClose(); }
+        }
+        document.addEventListener("keydown", onKey);
+        return function () { document.removeEventListener("keydown", onKey); };
+      }, [selection.kind, selection.key]);
       var title = selection.kind === "day" ? t("detail.day", { date: selection.key }) : selection.kind === "skill" ? t("detail.skill", { name: selection.key }) : selection.kind === "skills" ? t("skill.title") : t((selection.kind === "timing" ? "timec." : "compose.") + selection.key);
       var rows = detailRows(props.sessions, selection, props.range);
       var sum = rows.reduce(function (total, row) { return total + row.value; }, 0);
       var tokens = rows.reduce(function (total, row) { return total + row.tokens; }, 0);
       var cost = rows.reduce(function (total, row) { return total + row.cost; }, 0);
       function formatValue(value) { return selection.kind === "timing" ? formatDuration(value, t) : selection.kind === "skill" ? "×" + value : formatTokens(value, t) + " Token"; }
-      return h(ModalShell, { title: title, drawer: true, onClose: props.onClose },
-        h("header", { className: "dul_drawerHead" }, h("h2", null, title), h("button", { type: "button", className: "dul_btn", onClick: props.onClose }, t("detail.close"))),
-        h("div", { className: "dul_drawerBody" }, selection.kind === "skills"
+      var secondaryLabel = selection.kind === "day" ? t("kpi.cost") : selection.kind === "skill" ? t("detail.skillTokens") : "";
+      var secondaryValue = selection.kind === "day" ? formatCost(cost, props.rate, t) : formatTokens(tokens, t) + " Token";
+      return h("section", { ref: panel, className: "dul_detailPanel", role: "region", "aria-label": title },
+        h("header", { className: "dul_detailHead" },
+          h("button", { type: "button", className: "dul_btn dul_detailBack", onClick: props.onClose },
+            h("svg", { width: 14, height: 14, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, "aria-hidden": true }, h("path", { d: "M14 6l-6 6 6 6M8 12h12", strokeLinecap: "round", strokeLinejoin: "round" })), t("detail.back")),
+          h("div", { className: "dul_detailCrumb" }, h("span", null, t("nav.overview")), h("span", { "aria-hidden": true }, "/"), h("h2", null, title))),
+        h("div", { className: "dul_detailBody" }, selection.kind === "skills"
           ? h(SkillList, { t: t, skills: props.skills, onSelect: props.onSkill })
           : h(React.Fragment, null,
-              h("div", { className: "dul_detailStats" }, h("strong", { className: "dul_detailValue" }, formatValue(sum)), h("span", null, t("detail.sessions", { n: rows.length })),
-                selection.kind === "day" ? h("span", null, formatCost(cost, props.rate, t)) : selection.kind === "skill" ? h("span", null, formatTokens(tokens, t) + " " + t("detail.skillTokens")) : null),
+              h("div", { className: "dul_detailStats" },
+                h("div", { className: "dul_detailStat" }, h("span", { className: "dul_detailStatLabel" }, t("detail.total")), h("strong", { className: "dul_detailValue" }, formatValue(sum))),
+                secondaryLabel ? h("div", { className: "dul_detailStat" }, h("span", { className: "dul_detailStatLabel" }, secondaryLabel), h("strong", { className: "dul_detailSecondary" }, secondaryValue)) : null),
               h("p", { className: "dul_detailHint" }, selection.kind === "day" ? t("detail.dayHint") : t("detail.cumulative")),
+              h("div", { className: "dul_detailListHead" }, h("span", null, t("detail.sessions", { n: rows.length })), h("span", null, selection.kind === "timing" ? t("kpi.activeTime") : selection.kind === "skill" ? t("skill.title") : t("kpi.tokens"))),
               rows.length === 0 ? h("div", { className: "dul_empty" }, t("detail.empty")) : h("ul", { className: "dul_detailList" }, rows.map(function (row) {
                 var session = row.session;
                 var openable = session.state === "active" && typeof props.onOpen === "function";
                 var name = session.title || t("untitled");
                 return h("li", { className: "dul_detailRow", key: session.id },
-                  h("div", { className: "dul_detailName" }, h(openable ? "button" : "strong", { type: openable ? "button" : undefined, className: openable ? "dul_sessionOpen" : undefined, onClick: openable ? function () { props.onOpen(session.id); } : undefined, title: name }, name),
-                    h("div", { className: "dul_sessionMeta", title: session.cwd || session.id }, h("span", null, session.cwd || session.id)), h(StateBadge, { state: session.state, t: t })),
+                  h("div", { className: "dul_detailName" },
+                    h("div", { className: "dul_detailTitle" }, h(openable ? "button" : "strong", { type: openable ? "button" : undefined, className: (openable ? "dul_sessionOpen " : "") + "dul_detailSessionName", onClick: openable ? function () { props.onOpen(session.id); } : undefined, title: name }, name), h(StateBadge, { state: session.state, t: t })),
+                    h("div", { className: "dul_sessionMeta", title: session.cwd || session.id }, h("span", null, session.cwd || session.id))),
                   h("div", { className: "dul_detailMetric" }, h("strong", null, formatValue(row.value)),
                     selection.kind === "day" ? h("div", { className: "dul_muted" }, formatCost(row.cost, props.rate, t)) : selection.kind === "skill" ? h("div", { className: "dul_muted" }, formatTokens(row.tokens, t) + " Token") : null));
               })))));
@@ -1365,11 +1399,15 @@ window.__ModuleLoader__.load({
       var [detail, setDetail] = useState(null);
       var [sort, setSort] = usePreference("sort", "recent", ["recent", "tokens", "cost", "turns"]);
       var [view, setView] = usePreference("view", "list", ["list", "cards"]);
-      var [more, setMore] = usePreference("insights", "closed", ["open", "closed"]);
+      var [tab, setTab] = usePreference("tab", "overview", ["overview", "sessions"]);
+      var [perPage, setPerPage] = usePreference("page-size", "auto", ["auto", "12", "24", "48"]);
       var [page, setPage] = useState(0);
       var [hoverSlice, setHoverSlice] = useState(null);
       var [hoverTime, setHoverTime] = useState(null);
       var dense = view === "list";
+      var pageSize = perPage === "auto" ? (dense ? 25 : 9) : Number(perPage);
+      var pageRoot = useRef(null);
+      var detailReturn = useRef(null);
       var requestSerial = useRef(0);
       var mounted = useRef(true);
       var operation = useRef(false);
@@ -1402,7 +1440,24 @@ window.__ModuleLoader__.load({
         return function () { mounted.current = false; requestSerial.current += 1; };
       }, []);
 
-      useEffect(function () { setPage(0); }, [scope, query, range, depth, sort, view]);
+      useEffect(function () { setPage(0); }, [scope, query, range, depth, sort, view, perPage]);
+      useEffect(function () { if (pageRoot.current) pageRoot.current.scrollTop = 0; }, [tab, page, pageSize]);
+
+      useEffect(function () {
+        if (!pageRoot.current) return;
+        if (detail !== null) pageRoot.current.scrollTop = 0;
+        else if (detailReturn.current) {
+          var saved = detailReturn.current;
+          detailReturn.current = null;
+          if (saved.focus && saved.focus.isConnected) saved.focus.focus();
+          pageRoot.current.scrollTop = saved.scrollTop;
+        }
+      }, [detail]);
+
+      function showDetail(selection) {
+        if (detail === null) detailReturn.current = { scrollTop: pageRoot.current ? pageRoot.current.scrollTop : 0, focus: document.activeElement };
+        setDetail(selection);
+      }
 
       function act(sessionId, path) {
         if (operation.current) return;
@@ -1692,6 +1747,7 @@ window.__ModuleLoader__.load({
       for (var ci = 0; ci < composition.length; ci += 1) composeTotal += composition[ci].value;
 
       var spent = derived.timing;
+      var timeCenter = durationCenter(spent.wallMs, t);
       var accounted = spent.ttftMs + spent.reasoningMs + spent.textMs + spent.toolArgMs + spent.toolsMs;
       var otherMs = Math.max(0, spent.wallMs - accounted);
       var modelTimes = spent.modelCalls + " " + t("unit.times");
@@ -1706,19 +1762,19 @@ window.__ModuleLoader__.load({
       ];
 
 
-      function selectDay(key) { setDetail({ kind: "day", key: key }); }
-      function selectSkill(key) { setDetail({ kind: "skill", key: key }); }
+      function selectDay(key) { showDetail({ kind: "day", key: key }); }
+      function selectSkill(key) { showDetail({ kind: "skill", key: key }); }
       function breakdown(kind, title, rows, hover, onHover) {
-        function select(row) { setDetail({ kind: kind, key: row.key }); }
+        function select(row) { showDetail({ kind: kind, key: row.key }); }
         return h("section", { className: "dul_card dul_compositionCard", "aria-label": title },
           h("div", { className: "dul_cardHead" }, h("span", { className: "dul_cardTitle" }, title)),
           h("div", { className: "dul_donutRow" },
             h(Donut, { size: 72, stroke: 9, slices: rows, highlight: hover, onHover: onHover, onSelect: select,
-              centerValue: kind === "timing" ? formatDuration(spent.wallMs, t) : formatTokens(composeTotal, t),
-              centerLabel: kind === "timing" ? t("timec.active") : t("donut.total") }),
+              centerValue: kind === "timing" ? timeCenter.value : formatTokens(composeTotal, t),
+              centerLabel: kind === "timing" ? timeCenter.unit : t("donut.total"),
+              centerTitle: kind === "timing" ? t("timec.active") + " · " + formatDuration(spent.wallMs, t) : undefined }),
             h(CompositionLegend, { rows: rows, hover: hover, onHover: onHover, onSelect: select })));
       }
-      var pageSize = 25;
       var pages = Math.max(1, Math.ceil(filtered.length / pageSize));
       var currentPage = Math.min(page, pages - 1);
       var visibleRows = filtered.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
@@ -1730,9 +1786,30 @@ window.__ModuleLoader__.load({
         busy: busy, rate: data.usdToCny, onAsk: ask, onOpen: props.onOpenSession,
         onUnarchive: function (id) { act(id, "/unarchive"); },
       };
-      return h("div", { className: "dul_page" + (dense ? " dul_dense" : "") },
+      function selectTab(value) { detailReturn.current = null; setDetail(null); setTab(value); }
+      function tabKey(event, value) {
+        var target;
+        if (event.key === "ArrowRight" || event.key === "ArrowLeft") target = value === "overview" ? "sessions" : "overview";
+        else if (event.key === "Home") target = "overview";
+        else if (event.key === "End") target = "sessions";
+        else return;
+        event.preventDefault();
+        selectTab(target);
+        var next = event.currentTarget.parentElement.querySelector('[data-ledger-tab="' + target + '"]');
+        if (next) next.focus();
+      }
+      return h("div", { ref: pageRoot, className: "dul_page" + (dense ? " dul_dense" : "") },
         h("div", { className: "dul_inner" }, head,
           error ? h("p", { className: "dul_error dul_refreshError", role: "alert" }, t("error.load") + " " + error) : null,
+          h("div", { className: "dul_navigation" },
+            h("div", { className: "dul_tabs", role: "tablist", "aria-label": t("nav.label") }, ["overview", "sessions"].map(function (value) {
+              return h("button", { key: value, id: NS + "-tab-" + value, type: "button", role: "tab", className: "dul_tab", "data-ledger-tab": value, "aria-selected": tab === value, "aria-controls": NS + "-panel-" + value, tabIndex: tab === value ? 0 : -1,
+                onClick: function () { selectTab(value); }, onKeyDown: function (event) { tabKey(event, value); } }, t("nav." + value));
+            })),
+            h("a", { className: "dul_reference", href: REFERENCE_URL, target: "_blank", rel: "noopener noreferrer", title: "bowenliang123/dsh-context" }, t("source.reference"))),
+          h("div", { className: "dul_panel", role: "tabpanel", id: NS + "-panel-overview", "aria-labelledby": NS + "-tab-overview", hidden: tab !== "overview" },
+          detail !== null ? h(DetailPanel, { selection: detail, t: t, sessions: data.sessions || [], skills: derived.skills, range: range, rate: data.usdToCny, onClose: function () { setDetail(null); }, onSkill: selectSkill, onOpen: props.onOpenSession }) : null,
+          h("div", { className: "dul_overviewContent", hidden: detail !== null },
           h("section", { className: "dul_top", "aria-label": t("overview.title") },
             h(Kpi, { label: t("kpi.sessions"), value: String(derived.total.sessions), hint: t("kpi.sessionsBreak", { a: derived.byState.active.sessions, b: derived.byState.archived.sessions, d: derived.byState.deleted.sessions }) }),
             h(Kpi, { label: t("kpi.tokens"), value: formatTokens(derived.total.tokens, t), hint: t("kpi.tokenBreak", { session: formatTokens(derived.rootTotals.tokens, t), sub: formatTokens(derived.subagents.tokens, t), turns: derived.total.turns }) }),
@@ -1743,15 +1820,13 @@ window.__ModuleLoader__.load({
           h("div", { className: "dul_analysis" },
             h(DailyChart, { t: t, cardClass: "dul_chartCard", rate: data.usdToCny, title: t("chart.title"), empty: t("chart.empty"), series: derived.chart, onSelect: selectDay }),
             breakdown("composition", t("compose.title"), composition, hoverSlice, setHoverSlice),
-            breakdown("timing", t("timec.title"), timeRows, hoverTime, setHoverTime)),
-          h("details", { className: "dul_more", open: more === "open", onToggle: function (event) { var value = event.currentTarget.open ? "open" : "closed"; if (value !== more) setMore(value); } },
-            h("summary", null, t("insights.title")),
-            h("div", { className: "dul_moreBody" },
-              h(Heatmap, { t: t, title: t("heat.title"), less: t("heat.less"), more: t("heat.more"), series: derived.heat, onSelect: selectDay }),
-              h("section", { className: "dul_card" },
-                h("div", { className: "dul_cardHead" }, h("span", { className: "dul_cardTitle" }, t("skill.title")),
-                  derived.skills.length > 6 ? h("button", { type: "button", className: "dul_link", onClick: function () { setDetail({ kind: "skills" }); } }, t("detail.allSkills", { n: derived.skills.length })) : null),
-                h(SkillList, { skills: derived.skills.slice(0, 6), t: t, onSelect: selectSkill })))),
+            breakdown("timing", t("timec.title"), timeRows, hoverTime, setHoverTime),
+            h(Heatmap, { t: t, cardClass: "dul_heatCard", title: t("heat.title"), less: t("heat.less"), more: t("heat.more"), series: derived.heat, onSelect: selectDay }),
+            h("section", { className: "dul_card dul_skillCard", "aria-label": t("skill.title") },
+              h("div", { className: "dul_cardHead" }, h("span", { className: "dul_cardTitle" }, t("skill.title")),
+                derived.skills.length > 6 ? h("button", { type: "button", className: "dul_link", onClick: function () { showDetail({ kind: "skills" }); } }, t("detail.allSkills", { n: derived.skills.length })) : null),
+              h(SkillList, { skills: derived.skills.slice(0, 6), t: t, onSelect: selectSkill }))))),
+          h("div", { className: "dul_panel", role: "tabpanel", id: NS + "-panel-sessions", "aria-labelledby": NS + "-tab-sessions", hidden: tab !== "sessions" },
           h("section", { className: "dul_card dul_sessions", "aria-label": t("sessions.title"), "aria-busy": busy || loading },
             h("div", { className: "dul_sessionsHead" }, h("h2", { className: "dul_sessionsTitle" }, t("sessions.title")),
               h("div", { className: "dul_sessionTools" },
@@ -1765,13 +1840,16 @@ window.__ModuleLoader__.load({
             notice ? h("p", { className: "dul_notice " + (noticeError ? "dul_noticeError" : "dul_noticeSuccess"), role: noticeError ? "alert" : "status" }, notice) : null,
             dense ? h(SessionTable, sessionProps) : h(SessionCards, sessionProps),
             aggregate ? h("div", { className: "dul_forgotten" }, t("forgotten.summary", { n: aggregate.sessions, tokens: formatTokens(aggregate.tokens, t), cost: formatCost(aggregate.cost, data.usdToCny, t) })) : null,
-            h("div", { className: "dul_resultStatus" }, h("span", { "aria-live": "polite" }, t("list.results", { shown: filtered.length, total: counts.all })),
-              pages > 1 ? h("div", { className: "dul_pager" },
+            h("div", { className: "dul_resultStatus" }, h("span", { className: "dul_pageResults", "aria-live": "polite" }, t("list.pageResults", { from: filtered.length ? currentPage * pageSize + 1 : 0, to: Math.min((currentPage + 1) * pageSize, filtered.length), total: filtered.length })),
+              h("nav", { className: "dul_pager", "aria-label": t("page.navigation") },
+                h("select", { className: "dul_select", "aria-label": t("page.size"), value: perPage, onChange: function (event) { setPerPage(event.target.value); } },
+                  h("option", { value: "auto" }, t("page.auto", { n: dense ? 25 : 9 })),
+                  ["12", "24", "48"].map(function (size) { return h("option", { key: size, value: size }, t("page.items", { n: size })); })),
                 h("button", { type: "button", className: "dul_btn", disabled: currentPage === 0, onClick: function () { setPage(currentPage - 1); } }, t("page.previous")),
-                h("span", null, (currentPage + 1) + " / " + pages),
-                h("button", { type: "button", className: "dul_btn", disabled: currentPage + 1 === pages, onClick: function () { setPage(currentPage + 1); } }, t("page.next"))) : null))),
-        confirm !== null ? h(ConfirmDialog, { t: t, busy: busy, error: dialogError, danger: confirm.kind === "delete", title: t("dialog." + confirm.kind + ".title"), message: t("dialog." + confirm.kind + ".body", { name: confirm.name }), confirmLabel: t("dialog." + confirm.kind + ".confirm"), onConfirm: confirmRun, onCancel: function () { setConfirm(null); setDialogError(""); } }) : null,
-        detail !== null ? h(DetailDrawer, { selection: detail, t: t, sessions: data.sessions || [], skills: derived.skills, range: range, rate: data.usdToCny, onClose: function () { setDetail(null); }, onSkill: selectSkill, onOpen: props.onOpenSession }) : null);
+                h("span", { className: "dul_pageNumber" }, h("select", { className: "dul_select", "aria-label": t("page.jump"), value: String(currentPage), onChange: function (event) { setPage(Number(event.target.value)); } },
+                  Array.from({ length: pages }, function (_, index) { return h("option", { key: index, value: String(index) }, String(index + 1)); })), " / " + pages),
+                h("button", { type: "button", className: "dul_btn", disabled: currentPage + 1 === pages, onClick: function () { setPage(currentPage + 1); } }, t("page.next"))))))),
+        confirm !== null ? h(ConfirmDialog, { t: t, busy: busy, error: dialogError, danger: confirm.kind === "delete", title: t("dialog." + confirm.kind + ".title"), message: t("dialog." + confirm.kind + ".body", { name: confirm.name }), confirmLabel: t("dialog." + confirm.kind + ".confirm"), onConfirm: confirmRun, onCancel: function () { setConfirm(null); setDialogError(""); } }) : null);
     }
 
     // ---------------------------------------------------------------------
@@ -1779,6 +1857,16 @@ window.__ModuleLoader__.load({
     // ---------------------------------------------------------------------
 
     var zh = {
+      "nav.label": "账本页面",
+      "nav.overview": "概览",
+      "nav.sessions": "会话明细",
+      "source.reference": "参考 dsh-context",
+      "page.navigation": "会话分页",
+      "page.size": "每页数量",
+      "page.auto": "自动 · {n} 条/页",
+      "page.items": "{n} 条/页",
+      "page.jump": "跳转页码",
+      "list.pageResults": "显示 {from}–{to} 项，共 {total} 个会话",
       "overview.title": "用量概览",
       "sessions.title": "会话明细",
       "range.label": "统计范围",
@@ -1804,7 +1892,6 @@ window.__ModuleLoader__.load({
       "list.results": "{shown} / {total} 个会话",
       "page.previous": "上一页",
       "page.next": "下一页",
-      "insights.title": "活跃度与技能",
       "detail.close": "关闭",
       "detail.day": "{date} · 每日用量",
       "detail.skill": "技能加载 · {name}",
@@ -1848,6 +1935,11 @@ window.__ModuleLoader__.load({
       "dur.hm": "{h} 小时 {m} 分",
       "dur.ms": "{m} 分 {s} 秒",
       "dur.s": "{s} 秒",
+      "dur.unit.h": "小时",
+      "dur.unit.m": "分钟",
+      "dur.unit.s": "秒",
+      "detail.total": "合计",
+      "detail.back": "返回概览",
       "kpi.sessionsHint": "{n} 个会话",
       "kpi.turnsHint": "共 {n} 轮",
       "kpi.totalHintSub": "共 {n} 轮 · 子代理另 {sub}",
@@ -1962,6 +2054,16 @@ window.__ModuleLoader__.load({
     };
 
     var en = {
+      "nav.label": "Ledger pages",
+      "nav.overview": "Overview",
+      "nav.sessions": "Sessions",
+      "source.reference": "Inspired by dsh-context",
+      "page.navigation": "Session pagination",
+      "page.size": "Items per page",
+      "page.auto": "Auto · {n} / page",
+      "page.items": "{n} / page",
+      "page.jump": "Go to page",
+      "list.pageResults": "Showing {from}–{to} of {total} sessions",
       "overview.title": "Usage overview",
       "sessions.title": "Sessions",
       "range.label": "Usage period",
@@ -1987,7 +2089,6 @@ window.__ModuleLoader__.load({
       "list.results": "{shown} / {total} sessions",
       "page.previous": "Previous",
       "page.next": "Next",
-      "insights.title": "Activity and skills",
       "detail.close": "Close",
       "detail.day": "{date} · Daily usage",
       "detail.skill": "Skill loads · {name}",
@@ -2031,6 +2132,11 @@ window.__ModuleLoader__.load({
       "dur.hm": "{h}h {m}m",
       "dur.ms": "{m}m {s}s",
       "dur.s": "{s}s",
+      "dur.unit.h": "hours",
+      "dur.unit.m": "min",
+      "dur.unit.s": "sec",
+      "detail.total": "Total",
+      "detail.back": "Back to overview",
       "kpi.sessionsHint": "{n} sessions",
       "kpi.turnsHint": "{n} turns",
       "kpi.totalHintSub": "{n} turns · subagents {sub}",

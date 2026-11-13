@@ -3,6 +3,35 @@
 DeepSeek Harness（DSH）用量账本插件：跨会话保留 Token 用量，支持中文和英文界面。
 会话删除后，已经记录的用量仍保留在账本中。
 
+## 参考来源与本项目扩展
+
+本插件的用量概览和可视化展示参考了 [dsh-context](https://github.com/bowenliang123/dsh-context)
+的 **Context Insights / 上下文洞察** 页面，原作者为
+[bowenliang123](https://github.com/bowenliang123)。上游项目采用
+[Apache-2.0 许可证](https://github.com/bowenliang123/dsh-context/blob/main/LICENSE)。感谢原作者的开源分享。
+
+本项目在这一参考基础上，扩展了独立的持久用量账本、会话删除后保留统计、
+归档／删除管理、工作区路径回填，以及本项目的紧凑视图和页内详情。
+
+界面分为 **概览** 与 **会话明细** 两个独立页签。会话页保留筛选、搜索和排序，
+拥有独立的每页数量和跳页控制；卡片自动每页 9 个，列表自动每页 25 条，
+也可手动选择每页 12、24 或 48 条。切换页签会保留筛选和页码。
+
+只有标题、路径或模型信息的空会话暂不显示，也不计入会话数量；产生实际对话或用量后
+自动显示。未命名但已有实际活动的会话仍会保留，历史账本记录和已发生的用量不会删除。
+
+## 0.1.2 更新
+
+- 活跃度和技能加载并入概览网格，移除独占整行的折叠区；不同窗口宽度自动重排。
+
+- 图表、技能与每日用量详情改为插件页内查看，保留顶部导航；返回时恢复滚动位置。
+- 耗时环图使用紧凑数字与独立单位，悬停可查看完整时长。
+- 概览和会话明细拆为独立页签，切换时保留筛选与页码。
+- 会话列表与卡片支持每页数量、上一页／下一页和直接跳页；卡片默认每页 9 个。
+- 仅有元信息的空会话不展示、不计数；已有实际对话或用量的未命名会话仍保留。
+- 兼容历史空记录补齐活动信息，保留子代理的父会话分组和全部历史用量。
+- 在界面与文档注明参考 bowenliang123/dsh-context，并说明本项目的扩展功能。
+
 ## 0.1.1 更新
 
 - 六项统计横向排列，会话默认使用紧凑列表，可搜索、排序、分页并切换为卡片。
@@ -31,7 +60,7 @@ DeepSeek Harness（DSH）用量账本插件：跨会话保留 Token 用量，支
 需要固定版本时，使用：
 
 ```text
-https://github.com/xiyu-ljy/dsplugin/releases/download/v0.1.1/dsh-usage-ledger-0.1.1.tgz
+https://github.com/xiyu-ljy/dsplugin/releases/download/v0.1.2/dsh-usage-ledger-0.1.2.tgz
 ```
 
 这是包含前后端 JavaScript 的安装包，无需自行编译，也没有安装时运行的构建脚本。
@@ -46,7 +75,7 @@ dsh plugin --profile <profile> add https://github.com/xiyu-ljy/dsplugin/releases
 
 命令执行完成后重启该配置，再刷新网页。
 
-仓库根目录本身也是可安装的插件目录，可用 `github:xiyu-ljy/dsplugin#v0.1.1` 安装固定版本。
+仓库根目录本身也是可安装的插件目录，可用 `github:xiyu-ljy/dsplugin#v0.1.2` 安装固定版本。
 仅输入 `dsh-usage-ledger` 会去 npm 查找；本次分发使用 GitHub Release 下载链接。
 
 ---
@@ -60,7 +89,7 @@ sessions itself — snapshotting their usage first.
 From a packed tarball or an unpacked folder:
 
 ```sh
-dsh plugin --profile <profile> add ./dsh-usage-ledger-0.1.1.tgz
+dsh plugin --profile <profile> add ./dsh-usage-ledger-0.1.2.tgz
 # or
 dsh plugin --profile <profile> add ./dsh-usage-ledger
 ```

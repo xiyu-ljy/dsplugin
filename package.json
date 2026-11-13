@@ -1,6 +1,6 @@
 {
   "name": "dsh-usage-ledger",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Durable cross-session token usage ledger for DeepSeek Harness, with a Context Insights-style page that keeps counting sessions after they are deleted.",
   "type": "module",
   "license": "MIT",
